@@ -19,12 +19,7 @@ Univers::Univers(bool aff, sf::Font *pol, int tPol) {
  * DESTRUCTEUR
  */
 Univers::~Univers() {
-    // libération des astres
-    // tant qu'il y a encore des cases
-    while(astres.size() > 0) {	
-	delete astres.back(); // libération du dernier item
-	astres.pop_back(); // libération de la dernière cas
-    }
+    liberationMemoire();
     if(affichage)
 	cout << "MEM: Libération mémoire Univers terminée" <<endl;
 }
@@ -45,7 +40,6 @@ void Univers::passagedt() {
 	astres[i]->Move();
     }
 }
-
 
 
 // calcule et renvoie l'attraction gravitationnelle entre les deux masses en kilos espacées de d mètres
@@ -94,6 +88,13 @@ void Univers::supprimerAstre(Astre *cible) {
 	std::cout<<"L'astre N°"<<ID<<" a été supprimé"<<std::endl;
 }
 
+
+
+// supprime tout l'Univers et le réinitialise selon le fichier AST.Alk
+void Univers::reinitialiserUnivers() {
+    liberationMemoire(); // On libère les astres
+    INI_Astres(); // et on les reprend !
+}
 
 
 
@@ -172,3 +173,18 @@ bool Univers::estCorrompu(vector<vector<string> > *vec) {
     return false;
     
 }
+
+
+
+// libère la mémoire prise par la classe Univers
+void Univers::liberationMemoire() {
+    // libération des astres
+    // tant qu'il y a encore des cases
+    while(astres.size() > 0) {	
+	delete astres.back(); // libération du dernier item
+	astres.pop_back(); // libération de la dernière cas
+    }
+}
+
+
+

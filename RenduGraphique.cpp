@@ -184,6 +184,13 @@ void RenduGraphique::boucleMaitresse() {
 			// si pas d'astre sélectionné, pas la peine de continuer
 			if(selection != NULL) 
 			    modificationAstre();
+			if(affichage)
+			    std::cout<<"Astre en cours de modification..."<<std::endl;
+			break;
+		    case Key::S: // réinitialiser l'Univers
+			U->reinitialiserUnivers();
+			if(affichage)
+			    std::cout<<"UNIVERS REINITIALISE !"<<std::endl;
 			break;
 
 

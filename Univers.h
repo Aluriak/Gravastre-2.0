@@ -15,6 +15,7 @@ class Univers {
 	void borneVitesse(sf::Vector2f*); // borne la vitesse dans l'intervalle [-BORNE_VITESSE;PRMG_BORNE_VITESSE]
 	float attraction(float, float, float); // calcule et renvoie l'attraction gravitationnelle entre les deux masses en kilos espacées de d mètres
 	void supprimerAstre(Astre*); // supprime l'astre en voyé en argument
+	void reinitialiserUnivers(); // supprime tout l'Univers et le réinitialise selon le fichier AST.Alk
 
     // ACCESSEURS
 	std::vector<Astre*> getAstres();
@@ -37,6 +38,7 @@ class Univers {
     // METHODES
 	void INI_Astres(); // Remplis la liste d'astre selon les données brutes
 	bool estCorrompu(std::vector<std::vector<std::string> >*); // renvois vrai si le vector en arg() n'est pas de taille attendue pour l'initialisation des Astres
+	void liberationMemoire(); // libère la mémoire prise par la classe Univers
 };
 
 #endif
