@@ -1,0 +1,12 @@
+e main.h
+vsplit main.cpp
+tabnew Univers.h
+vsplit Univers.cpp
+tabnew Astre.h
+vsplit Astre.cpp
+tabnew RenduGraphique.h
+vsplit RenduGraphique.cpp
+tabnew BoiteHauteInterface.h
+vsplit BoiteHauteInterface.cpp
+tabnew BoiteInfoAstre.h
+vsplit BoiteInfoAstre.cpp
