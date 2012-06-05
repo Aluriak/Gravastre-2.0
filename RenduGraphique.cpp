@@ -453,7 +453,7 @@ void RenduGraphique::modificationAstre() {
     bool AxeX = true; // vrai si l'axe visé est X, faux si Y
 
     // Directive à afficher
-    directive = "Donnez un nombre puis tapez    M: changer masse, XA: changer accélération en x, YV: changer vitesse en y";
+    directive = "Donnez un nombre puis tapez    M: changer masse, XA: changer accélération en x, YV: changer vitesse en y, ESC: annuler";
     // boucle de modification
     while(!termine) {
 	Event event; // évènement
@@ -480,7 +480,6 @@ void RenduGraphique::modificationAstre() {
 				std::cout << "Ajout Accélération Y : " 
 					  << str2float(tampon) << std::endl;
 			}
-			std::cout << "AjoutAcc: " << str2float(tampon) << std::endl;
 			tampon = "";
 			termine = true; // stop !
 			break;
