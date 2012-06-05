@@ -1,2 +1,35 @@
 Gravastre 2.0
 
+
+
+__Touches disponibles :__ // incomplet
+    - Pavé Numérique et Chiffres clavier, pour pouvoir donner des nombres (affichés en haut). Utilisez la touche E pour les puissances et le tiret '-' pour le signe
+    - Pause, pour mettre en pause
+    - M, pour arrêter/faire jouer la musique
+    - A, pour lancer la modification de l'astre sélectionné
+    - Flèches, pour se déplacer
+    - Espace, pour prendre comme référentiel l'astre sélectionné
+    - Escape, pour quitter
+
+__Utilisation de la sourie :__ // incomplet
+    - Clic droit, utilisé en cliqué-glissé permet de bouger le cadre
+    - Clic gauche, sur un astre, permet de le sélectionner. Sinon, l'astre est déselectionné
+    - Clic gauche, utilisé en cliqué-glissé sur le cadre d'information de l'astre sélectionné permet de bouger ce dernier
+    - Molette, pour le zoom
+
+__Modifier un astre :__ // incomplet
+Chose possible en sélectionnant l'astre voulut et en appuyant sur A.
+La simulation est mise en pause, et le tampon est vidé.
+Remplissez ce dernier (avec le pavé numérique), puis choisissez quel paramètre utiliser.
+
+Exemple :
+taper successivement "1e13M" modifie la masse de l'astre en 1*10^13 unité de poids
+
+
+
+
+__Indications sur les unités utilisées__ : 
+Les unitées utilisées ne correspondent pas à une valeur réelle.
+Cependant, un ordre de grandeur est compréhensible, et calculable.
+300 px équivaux environ à 1 unité astronomique. (1e11 mètres)
+Multipliez les poids par 1e17 pour avoir des poids réalistes
