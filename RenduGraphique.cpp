@@ -109,7 +109,7 @@ void RenduGraphique::boucleMaitresse() {
     // boucle évènementielle
     while(app->IsOpened()) {
 	// si on est pas en pause, on passe au dt suivant !
-	directive = "SOURIE: deplacer ou selectionner, M: Arreter la musique, A: modifier astre selectionne, ESPACE: changer referentiel";
+	directive = "SOURIS: deplacer ou selectionner, M: Arreter la musique, A: modifier astre selectionne, ESPACE: changer referentiel, ESC: quitter";
 	if(!pause) {
 	    U->passagedt();
 	    // si un astre est suivis (on suit la sélection), avec sécurité
