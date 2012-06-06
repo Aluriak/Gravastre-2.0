@@ -24,7 +24,8 @@ Astre::Astre(Univers *u, String Nom, float x, float y, float masse, float diam, 
     a_bclr = clr;
     estSelectionne = false;
     // création du shape
-    shape = Shape::Circle(x, y, diam/2.0, clr, 0.1, clr);
+    if(a_diam > 0) // sécurité
+	shape = Shape::Circle(x, y, diam/2.0, clr, 0.1, clr);
     nom = Nom;
     nom.SetPosition(a_pos.x + a_diam + 5, a_pos.y);
 }
@@ -48,7 +49,7 @@ void Astre::calculsdt(std::vector<Astre*> astres) {
 
     // pour chaque astre, si il ne s'agit pas celui étudié
     for(unsigned int i = 0; i < astres.size(); i++) {
-	if(this != astres[i]) {
+	if(this != astres[i] && astres[i]->GetMasse() != 0) {
 	    // calcul des distances, signées
 		distX = astres[i]->GetPosition().x - a_pos.x;
 		distY = astres[i]->GetPosition().y - a_pos.y;

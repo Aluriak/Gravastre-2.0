@@ -136,6 +136,9 @@ void Univers::INI_Astres() {
     if(estCorrompu(vec))
 	FATAL_ERROR("INI: Le fichier FILE_AST est corrompu");
 
+    // la première chose à faire, c'est de mettre la référence spatiale universelle, de classe ReferenceUnivers qui est un Astre par héritage. (et bénéficie du polymorphisme).
+    astres.push_back(new ReferenceUnivers(this, police));
+
     // boucle d'initialisation (on commence à la deuxième ligne, car la première ligne est utilisée par le patron de ligne, décrivant l'ordre suivant :
     //		NOM:X:Y:MASSE:DIAMETRE:RED:GREEN:BLUE:VX:VY:
     for(unsigned int i = 1; i < vec->size(); i++) {

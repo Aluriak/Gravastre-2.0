@@ -17,8 +17,8 @@ class Astre {
 		bool = 1);
 
     // METHODES
-	void calculsdt(std::vector<Astre*>); // calcule les accélérations en fonction des astres envoyés en arguments
-	void Move(); // modifie sa vitesse selon accélérations, puis sa position en fonction des vitesses
+	virtual void calculsdt(std::vector<Astre*>); // calcule les accélérations en fonction des astres envoyés en arguments
+	virtual void Move(); // modifie sa vitesse selon accélérations, puis sa position en fonction des vitesses
 	void AddAcc(float, float); // ajouter à l'accélération
 	void AddPosition(float, float); // ajouter à la position
 	void AddVit(float, float); // ajouter à la vitesse
@@ -26,7 +26,7 @@ class Astre {
     // ACCESSEURS
 	// Généraux
 	    Univers *U;
-	    sf::Shape GetShape();
+	    virtual sf::Shape GetShape();
 	    sf::String GetNom();
 	    void SetMasse(float);
 	    void AddMasse(float);
@@ -49,7 +49,7 @@ class Astre {
 		void SetAccY(float);
 	    sf::Vector2f GetAcceleration();
     
-    private:
+    protected:
     // ATTRIBUTS
 	sf::Shape shape;
 	sf::String nom;

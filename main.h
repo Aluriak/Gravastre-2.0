@@ -26,6 +26,7 @@
     #define PRGM_TAILLEBOITEINFO_Y 250
     #define PRGM_TAILLEBOITEINFO_X 150
     #define PRGM_QUESTION_QUITTER "Quitter ?"
+    #define PRGM_NOM_REFERENCE "Origine"
 // FILES
     #define FILE_ERR "Fichiers/Erreur.txt" // contient les messages d'erreur
     #define FILE_INI "Fichiers/INI.Alk"    // contient les valeurs utilisateurs
@@ -57,6 +58,7 @@ class Astre;
 #include "Interface/BoiteHauteInterface.h"
 #include "LecteurFichierINI.h"
 #include "Astre.h"
+#include "ReferenceUnivers.h"
 #include "Univers.h"
 #include "RenduGraphique.h"
 
