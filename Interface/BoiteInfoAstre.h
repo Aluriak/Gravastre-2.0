@@ -1,8 +1,6 @@
 #ifndef BOITEINFOASTRE_H_INCLUDED
 #define BOITEINFOASTRE_H_INCLUDED
 
-#include "main.h"
-
 
 class BoiteInfoAstre {
     public:

@@ -1,9 +1,6 @@
 #ifndef GRAPHIQUE_H_INCLUDED
 #define GRAPHIQUE_H_INCLUDED
 
-#include "main.h"
-
-
 
 class RenduGraphique {
     public:
@@ -60,8 +57,9 @@ class RenduGraphique {
 
     // METHODE
 	void affichageSFML(); // affiche les astres à l'écran
+	bool confirmationQuitter(bool); // demande à l'utilisateur s'il souhaite quitter, dans une boite de dialogue.
 	void selectionAstre(int x, int y); // utilise les coordonées de la sourie pour estimer quel astre à été cliqué (clic au coordonnées x;y), puis inflige à ce dernier une bordure rouge transparente. (et enlève cette bordure à l'astre pointé avant le clic, si il existe)
-	void modificationAstre(); // permet à l'utilisateur de modifier un astre au clavier et à la sourie
+	void modificationAstre(bool); // permet à l'utilisateur de modifier un astre au clavier et à la sourie, en remplacant(faux) ou en ajoutant(vrai)
 	OBJET_INTERFACE selectionInterface(int x, int y); // renvois vrai si l'interface à été cliquée. Gère les clics sur l'interface.
     // INITIALISATION
 	void INI_Valeurs(); // initialise les valeurs de renduGraphique et d'Univers

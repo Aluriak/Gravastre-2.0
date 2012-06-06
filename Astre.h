@@ -1,7 +1,6 @@
 #ifndef ASTRE_H_INCLUDED
 #define ASTRE_H_INCLUDED
 
-#include "main.h"
 
 /*
  * La classe Astre représente un astre, en contenant les données arithmétiques (position, vitesse, accélération), que géométrique (shape Circle)
@@ -11,7 +10,11 @@
 class Astre {
     public:
     // CONSTRUCTEUR
-	Astre(Univers*, sf::String, float, float, float, float, sf::Color, float = 0, float = 0, float = 0, float = 0, bool = 1);
+	Astre(  Univers*, sf::String, 
+		float, float, float, float, 
+		sf::Color, 
+		float = 0, float = 0, float = 0, float = 0, 
+		bool = 1);
 
     // METHODES
 	void calculsdt(std::vector<Astre*>); // calcule les accélérations en fonction des astres envoyés en arguments
@@ -26,6 +29,7 @@ class Astre {
 	    sf::Shape GetShape();
 	    sf::String GetNom();
 	    void SetMasse(float);
+	    void AddMasse(float);
 	    float GetMasse();
 	    void SetDiametre(float);
 	    float GetDiametre();
@@ -36,9 +40,13 @@ class Astre {
 	    sf::Vector2f GetPosition();
 	// Vitesse
 	    void SetVitesse(float, float);
+		void SetVitX(float);
+		void SetVitY(float);
 	    sf::Vector2f GetVitesse();
 	// Accélération
 	    void SetAcceleration(float, float);
+		void SetAccX(float);
+		void SetAccY(float);
 	    sf::Vector2f GetAcceleration();
     
     private:

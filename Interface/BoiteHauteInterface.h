@@ -1,8 +1,6 @@
 #ifndef BOITEHAUTEINTERFACE_H_INCLUDED
 #define BOITEHAUTEINTERFACE_H_INCLUDED
 
-#include "main.h"
-
 
 class BoiteHauteInterface {
     public:

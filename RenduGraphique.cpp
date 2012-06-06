@@ -85,8 +85,10 @@ void RenduGraphique::boucleMaitresse() {
     // intialisations
 	int inter = 0; // variable intermédiaire entière
 	std::string stmp(""); // variable intermédiaire de type string
+	bool interbool = false; // variable intermédiaire de type bool
 	bool pause = false; // vrai quand le programme est en pause
 	bool suivreAstre = false; // vrai quand on suit l'astre sélectionné
+	const Input& input = app->GetInput(); // contient les stattus des touches et boutons en temps réel.
     // variables relatives à la sourie
 	bool sourisDroit = false, sourisGauche = false; // vrai si appuyé
 	bool boiteInfoBougee = false; // vrai quand la BoiteInfoAstre est ferrée
@@ -126,8 +128,9 @@ void RenduGraphique::boucleMaitresse() {
 	    // TOUCHES DU CLAVIER
 	    else if(event.Type == Event::KeyPressed) {
 		switch(event.Key.Code) {
-		    case Key::Escape: // fin du programme
-			app->Close();
+		    case Key::Escape: // fin du programme (avec confirmation)
+			directive = "Quitter ?  Oui: Escape, Non: Autre touche";
+			if(confirmationQuitter(suivreAstre)) app->Close();
 			break;
 		    case Key::Tab: // on saute le nombre indiqué par le tampon, ou la constante utilisateur NAV_PasTab
 			inter = str2num(tampon);
@@ -182,13 +185,23 @@ void RenduGraphique::boucleMaitresse() {
 			break;
 		    case Key::A: // modifier l'astre sélectionné
 			// si pas d'astre sélectionné, pas la peine de continuer
+			// Si Ctrl+a : on AJOUTE aux valeurs existantes
+			// Si a : on REMPLACE les valeurs existantes
+			if(input.IsKeyDown(Key::LControl) || // ctrl gauche 
+				input.IsKeyDown(Key::LControl)) // ou droit
+			    interbool = true; // donc on ajoute
+			else // sinon
+			    interbool = false; // on remplace
 			if(selection != NULL) 
-			    modificationAstre();
+			    modificationAstre(interbool); 
 			if(affichage)
 			    std::cout<<"Astre en cours de modification..."<<std::endl;
 			break;
-		    case Key::S: // réinitialiser l'Univers
+		    case Key::R: // réinitialiser l'Univers
 			U->reinitialiserUnivers();
+			// on déselectionne et on se suit plus d'astre
+			selection = NULL;
+			suivreAstre = false;
 			if(affichage)
 			    std::cout<<"UNIVERS REINITIALISE !"<<std::endl;
 			break;
@@ -318,7 +331,7 @@ void RenduGraphique::boucleMaitresse() {
 	    else if(event.Type == Event::MouseMoved) {
 		// si la souris bouge et que le bouton droit est appuyé
 		if(sourisDroit) {
-		    // on bouge la vue d'un nombre de px égal à la différence entre la position de la sourie et la position de la sourie lorsque le clic droit à été fait
+		    // on bouge la vue d'un nombre de px égal à la différence entre la position de la sourie et la position de la sourie lorsque le clic gauche à été fait
 		    // note : on multiplie pas 1/zoom pour que ce dernier agisse sur le déplacement. Plus logique et pratique
 		    float tmpx = -(event.MouseMove.X - posSourie.x)/zoomActuel;
 		    float tmpy = -(event.MouseMove.Y - posSourie.y)/zoomActuel;
@@ -380,12 +393,51 @@ void RenduGraphique::affichageSFML() {
     }
     // INTERFACE
     // On reviens à une vue normale pour ces dessins, car ils s'impriment par dessus le reste et sont indépendant de la vue utilisée
-    app->SetView(app->GetDefaultView());
+    app->SetView(app->GetDefaultView()); // on utilise la vue interface
     // affichage de la boite de dialogue en bas à droite, contenant les infos relatives à l'astre sélectionné
     if(selection != NULL) 
 	bia->Draw(selection);
     bhi->Draw(tampon, directive); // barre du haut affichée !
 }
+
+
+
+
+// demande à l'utilisateur s'il souhaite quitter, dans une boite de dialogue.
+bool RenduGraphique::confirmationQuitter(bool suivreAstre) {
+    int reponse = -1; // -1 = rien; 0 = non; 1 = oui
+    // gestion évènementielle
+    Event event;
+    while(reponse == -1) {
+	// Affichages
+	app->Clear(); // nettoyage
+	U->passagedt(); // on fait passer un instant t
+	// si un astre est suivis (on suit la sélection), avec sécurité
+	if(suivreAstre && selection != NULL) {
+	    vue->Move(selection->GetVitesse().x,selection->GetVitesse().y);
+	}
+	affichageSFML(); // affichage
+	app->Display(); // actualisation de l'écran
+	// boucle d'évènements
+	while(app->GetEvent(event)) {
+	    if(event.Type == Event::KeyPressed) {
+		switch(event.Key.Code) {
+		    case Key::Escape: // seule escape permet de quitter
+			reponse = 1;
+			break;
+		    default: // toutes les autres disent non
+			reponse = 0;
+			break;
+		}
+	    }
+	    // les boutons de la sourie sont pris en compte pour un non
+	    else if(event.Type == Event::MouseButtonPressed) 
+		reponse = 0;
+	} // fin gestion évènement
+    }
+    return (bool)reponse;
+ }
+
 
 
 
@@ -440,8 +492,8 @@ void RenduGraphique::selectionAstre(int x, int y) {
 
 
 
-// permet à l'utilisateur de modifier un astre au clavier et à la sourie
-void RenduGraphique::modificationAstre() {
+// permet à l'utilisateur de modifier un astre au clavier et à la sourie, en ajoutant (booléen vrai), ou en remplacant (booléen faux)
+void RenduGraphique::modificationAstre(bool ajout) {
     // gestion évènementielle
     // On procède à une attente de touche parmi :
     // 		-escape (annuler)
@@ -458,6 +510,7 @@ void RenduGraphique::modificationAstre() {
     bool termine = false;
     std::string stmp; // chaine intermédiaire
     bool AxeX = true; // vrai si l'axe visé est X, faux si Y
+    bool clicGauche = false; // vrai si le bouton gauche de la sourie est cliqué
 
     // Directive à afficher
     directive = "Donnez un nombre puis tapez    M: changer masse, XA: changer accélération en x, YV: changer vitesse en y, ESC: annuler";
@@ -474,40 +527,77 @@ void RenduGraphique::modificationAstre() {
 			tampon = ""; 
 			termine = true; // stop !
 			break;
-		    case Key::A: // ajout à l'accélération
+		    // AJOUT/REMPLACEMENT ACCELERATION
+		    case Key::A: 
+			// AXE X
 			if(AxeX) {
-			    selection->AddAcc(str2float(tampon),0);
-			    if(affichage)
-				std::cout << "Ajout Accélération X : " 
-					  << str2float(tampon) << std::endl;
+			    if(ajout)
+				selection->AddAcc(str2float(tampon),0);
+			    else
+				selection->SetAccX(str2float(tampon));
+			    if(affichage) {
+				if(ajout)
+				    std::cout << "Ajout Accélération X : ";
+				else
+				    std::cout<<"Remplacement Accélération X : ";
+				std::cout << str2float(tampon) << std::endl;
+			    }
 			}
+			// AXE Y
 			else {
-			    selection->AddAcc(0,str2float(tampon));
-			    if(affichage)
-				std::cout << "Ajout Accélération Y : " 
-					  << str2float(tampon) << std::endl;
+			    if(ajout)
+				selection->AddAcc(0,str2float(tampon));
+			    else
+				selection->SetAccY(str2float(tampon));
+			    if(affichage) {
+				if(ajout)
+				    std::cout << "Ajout Accélération Y : ";
+				else
+				    std::cout<<"Remplacement Accélération Y : ";
+				std::cout<< str2float(tampon) << std::endl;
+			    }
 			}
 			tampon = "";
 			termine = true; // stop !
 			break;
-		    case Key::V: // ajout à la vitesse
+		    // AJOUT/REMPLACEMENT VITESSE
+		    case Key::V: 
+			// AXE X
 			if(AxeX) {
-			    selection->AddVit(str2float(tampon),0);
-			    if(affichage)
-				std::cout << "Ajout Vitesse X : " 
-					  << str2float(tampon) << std::endl;
+			    if(ajout)
+				selection->AddVit(str2float(tampon),0);
+			    else
+				selection->SetVitX(str2float(tampon));
+			    if(affichage) {
+				if(ajout)
+				    std::cout << "Ajout Vitesse X : ";
+				else
+				    std::cout << "Remplacement Vitesse X : ";
+				std::cout<< str2float(tampon) << std::endl;
+			    }
 			}
+			// AXE Y
 			else {
-			    selection->AddVit(0,str2float(tampon));
-			    if(affichage)
-				std::cout << "Ajout Vitesse Y : " 
-					  << str2float(tampon) << std::endl;
+			    if(ajout)
+				selection->AddVit(0,str2float(tampon));
+			    else
+				selection->SetVitY(str2float(tampon));
+			    if(affichage) {
+				if(ajout)
+				    std::cout << "Ajout Vitesse Y : ";
+				else
+				    std::cout << "Remplacement Vitesse Y : ";
+				std::cout<< str2float(tampon) << std::endl;
+			    }
 			}
 			tampon = "";
 			termine = true; // stop !
 			break;
 		    case Key::M: // modification de la masse
-			selection->SetMasse(str2float(tampon));
+			if(ajout)
+			    selection->SetMasse(str2float(tampon));
+			else
+			    selection->AddMasse(str2float(tampon));
 			if(affichage)
 			    std::cout << "Nouvelle Masse : " 
 				      << str2float(tampon) << std::endl;
@@ -587,6 +677,43 @@ void RenduGraphique::modificationAstre() {
 
 		    default:
 			break;
+		}
+	    } // fin gestion appuis touche
+
+
+	    // CLICS DE LA SOURIE
+	    // position de l'astre = position du clic gauche
+	    else if(event.Type == Event::MouseButtonPressed) {
+		// si c'est le bouton gauche
+		if(event.MouseButton.Button == Mouse::Left) {
+		    clicGauche = true;
+		    // si on n'a pas cliqué sur l'interface
+		    OBJET_INTERFACE oi = selectionInterface(event.MouseButton.X, event.MouseButton.Y); // on récupère la sortie
+		    if(oi == Dehors || BoiteInfo) {
+			app->SetView(*vue); // on utilise la vue utilisateur
+			Vector2f tmp = app->ConvertCoords(event.MouseButton.X, event.MouseButton.Y); // on trouve les coordonnées réelles du clic de sourie
+			// et on les applique à l'astre
+			selection->SetPosition(tmp.x, tmp.y);
+			// on utilise la vue interface
+			app->SetView(app->GetDefaultView()); 
+		    }
+		}
+
+	    } // juste pour voir si on relâche le bouton gauche
+	    else if(event.Type == Event::MouseButtonReleased) {
+		if(event.MouseButton.Button == Mouse::Left)
+		    clicGauche = false; // bouton gauche relâché
+	    }
+
+	    // MOUVEMENTS DE LA SOURIE
+	    else if(event.Type == Event::MouseMoved) {
+		if(clicGauche) { // si le bouton gauche est enfoncé
+		    app->SetView(*vue); // on utilise la vue utilisateur
+		    Vector2f tmp = app->ConvertCoords(event.MouseMove.X, event.MouseMove.Y); // on trouve les coordonnées réelles du clic de sourie
+		    // et on les applique à l'astre
+		    selection->SetPosition(tmp.x, tmp.y);
+		    // on utilise la vue interface
+		    app->SetView(app->GetDefaultView()); 
 		}
 	    }
 	} // fin gestion évènement secondaire

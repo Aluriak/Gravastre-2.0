@@ -1,8 +1,6 @@
 #ifndef UNIVERS_H_INCLUDED
 #define UNIVERS_H_INCLUDED
 
-#include "main.h"
-
 
 class Univers {
     public:

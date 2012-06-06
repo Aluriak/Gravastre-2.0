@@ -6,7 +6,7 @@ tabnew Astre.h
 vsplit Astre.cpp
 tabnew RenduGraphique.h
 vsplit RenduGraphique.cpp
-tabnew BoiteHauteInterface.h
-vsplit BoiteHauteInterface.cpp
-tabnew BoiteInfoAstre.h
-vsplit BoiteInfoAstre.cpp
+tabnew Interface/BoiteHauteInterface.h
+vsplit Interface/BoiteHauteInterface.cpp
+tabnew Interface/BoiteInfoAstre.h
+vsplit Interface/BoiteInfoAstre.cpp

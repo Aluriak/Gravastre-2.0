@@ -112,7 +112,10 @@ String Astre::GetNom() {
     return nom;
 }
 void Astre::SetMasse(float m) {
-    a_masse = fabs(m);
+    a_masse = m;
+}
+void Astre::AddMasse(float m) {
+    a_masse += m;
 }
 float Astre::GetMasse() {
     return a_masse;
@@ -151,6 +154,12 @@ void Astre::SetVitesse(float x, float y) {
     a_vit.x = x;
     a_vit.y = y;
 }
+void Astre::SetVitX(float x) {
+    a_vit.x = x;
+}
+void Astre::SetVitY(float y) {
+    a_vit.y = y;
+}
 sf::Vector2f Astre::GetVitesse() {
     Vector2f inter(a_vit.x, a_vit.y);
     return inter;
@@ -161,6 +170,12 @@ sf::Vector2f Astre::GetVitesse() {
 void Astre::SetAcceleration(float x, float y) {
     a_acc.x = x;
     a_acc.y = y;
+}
+void Astre::SetAccX(float x) {
+    a_vit.x = x;
+}
+void Astre::SetAccY(float y) {
+    a_vit.y = y;
 }
 sf::Vector2f Astre::GetAcceleration() {
     Vector2f inter(a_acc.x, a_acc.y);

@@ -25,6 +25,7 @@
     #define PRGM_NAME "Gravastre 2.0"
     #define PRGM_TAILLEBOITEINFO_Y 250
     #define PRGM_TAILLEBOITEINFO_X 150
+    #define PRGM_QUESTION_QUITTER "Quitter ?"
 // FILES
     #define FILE_ERR "Fichiers/Erreur.txt" // contient les messages d'erreur
     #define FILE_INI "Fichiers/INI.Alk"    // contient les valeurs utilisateurs
@@ -49,15 +50,15 @@
 /*
  * HEADERS
  */
-class Univers; // classe utilisée par tout le monde
-class BoiteInfoAstre; // classe utilisée par plusieurs autres classes
-class BoiteHauteInterface; // idem
+class Univers; 
+class Astre; 
+
+#include "Interface/BoiteInfoAstre.h"
+#include "Interface/BoiteHauteInterface.h"
+#include "LecteurFichierINI.h"
 #include "Astre.h"
 #include "Univers.h"
 #include "RenduGraphique.h"
-#include "BoiteInfoAstre.h"
-#include "BoiteHauteInterface.h"
-#include "LecteurFichierINI.h"
 
 
 /*

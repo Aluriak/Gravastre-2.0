@@ -1,24 +1,40 @@
 Gravastre 2.0
 
+Logiciel de simulation astronomique Open Source (voir le fichier LICENCE)
+Codé par Lucas Bourneuf en C++, en utilisant la SFML.
+
+liens : http://www.sfml-dev.org/index.php
 
 
-__Touches disponibles :__ // incomplet
+
+
+
+__Options de lancement :__
+Gravastre peut-être lancé avec des options dans la boite de commande.
+    -s : sortie standard utilisée. Des indocations sur ce que vous faites vous seront régulièrement communiquées par la sortie standard
+    -i : pas d'intialisation des fichiers de sortie, notamment le fichier d'erreur.
+
+
+__Touches disponibles :__ 
+    - M, pour arrêter/faire jouer la musique
+    - A, pour remplacer une propriété de l'astre sélectionné (ctrl + a pour ajouter à la valeur)
+    - R, pour réinitialiser l'Univers selon AST.Alk.
+    - Flèches, pour se déplacer
     - Pavé Numérique et Chiffres clavier, pour pouvoir donner des nombres (affichés en haut). Utilisez la touche E pour les puissances et le tiret '-' pour le signe
     - Pause, pour mettre en pause
-    - M, pour arrêter/faire jouer la musique
-    - A, pour lancer la modification de l'astre sélectionné
-    - Flèches, pour se déplacer
+    - Entrée, pour revenir au zoom normal
     - Espace, pour prendre comme référentiel l'astre sélectionné
-    - Escape, pour quitter
+    - Escape, deux fois pour quitter pour quitter
+    - Supr, pour supprimer l'astre en cours de modification
 
-__Utilisation de la sourie :__ // incomplet
+__Utilisation de la sourie :__
     - Clic droit, utilisé en cliqué-glissé permet de bouger le cadre
-    - Clic gauche, sur un astre, permet de le sélectionner. Sinon, l'astre est déselectionné
+    - Clic gauche, sur un astre, permet de le sélectionner. Sinon, l'astre est déselectionné (en modification, permet de déplacer l'astre)
     - Clic gauche, utilisé en cliqué-glissé sur le cadre d'information de l'astre sélectionné permet de bouger ce dernier
     - Molette, pour le zoom
 
 __Modifier un astre :__ // incomplet
-Chose possible en sélectionnant l'astre voulut et en appuyant sur A.
+Chose possible en sélectionnant l'astre voulut et en appuyant sur A. (ou ctrl+a pour garder l'ancienne valeur et l'ajouter à la nouvelle)
 La simulation est mise en pause, et le tampon est vidé.
 Remplissez ce dernier (avec le pavé numérique), puis choisissez quel paramètre utiliser.
 
