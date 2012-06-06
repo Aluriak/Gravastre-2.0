@@ -49,3 +49,10 @@ Les unitées utilisées ne correspondent pas à une valeur réelle.
 Cependant, un ordre de grandeur est compréhensible, et calculable.
 300 px équivaux environ à 1 unité astronomique. (1e11 mètres)
 Multipliez les poids par 1e17 pour avoir des poids réalistes
+
+
+__Man Page__ :
+
+La page de manuel disponible dans man_page/ est visualisable via :
+
+groff -Tascii -mdoc man_page/gravastre.1 | less 
