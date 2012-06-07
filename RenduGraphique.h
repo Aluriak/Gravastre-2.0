@@ -46,9 +46,6 @@ class RenduGraphique {
 	int NAV_PasTab; // nombre de dt sautés avec la touche tab
 	float NAV_PrecisionClic; // précision du clic en px
 	bool NAV_InverserDefilement; // vrai si le défilement à la sourie doit être inversé
-	// valeurs de l'univers (utilisées pour initialiser l'Univers)
-	int interBV;
-	float interG;
 	// valeurs de sortie
 	bool affichage; // si vrai, la sortie standard est utilisée
 	std::string musique; // chemin vers le fichier musique
