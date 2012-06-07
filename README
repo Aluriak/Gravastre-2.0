@@ -18,7 +18,7 @@ Gravastre peut-être lancé avec des options dans la boite de commande.
 __Touches disponibles :__ 
     - M, pour arrêter/faire jouer la musique
     - A, pour remplacer une propriété de l'astre sélectionné (ctrl + a pour ajouter à la valeur)
-    - R, pour réinitialiser l'Univers selon AST.Alk.
+    - R, pour réinitialiser l'Univers comme il l'était au lancement
     - Flèches, pour se déplacer
     - Pavé Numérique et Chiffres clavier, pour pouvoir donner des nombres (affichés en haut). Utilisez la touche E pour les puissances et le tiret '-' pour le signe
     - Pause, pour mettre en pause
