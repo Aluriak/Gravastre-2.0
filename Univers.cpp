@@ -139,6 +139,10 @@ void Univers::INI_Astres() {
     // la première chose à faire, c'est de mettre la référence spatiale universelle, de classe ReferenceUnivers qui est un Astre par héritage. (et bénéficie du polymorphisme).
     astres.push_back(new ReferenceUnivers(this, police));
 
+    // la première ligne du fichier contient des valeurs d'Univers
+    G = str2float((*vec)[0][0]);
+    bV = str2float((*vec)[0][1]);
+    
     // boucle d'initialisation (on commence à la deuxième ligne, car la première ligne est utilisée par le patron de ligne, décrivant l'ordre suivant :
     //		NOM:X:Y:MASSE:DIAMETRE:RED:GREEN:BLUE:VX:VY:
     for(unsigned int i = 1; i < vec->size(); i++) {
@@ -168,11 +172,14 @@ void Univers::INI_Astres() {
 // renvois vrai si le vector en arg() n'est pas de taille attendue pour l'initialisation des Astres
 bool Univers::estCorrompu(vector<vector<string> > *vec) {
     // le vector final doit avoir au moins une case (seulement la ligne de référence, donc pas d'astre)
-    // Chaque case doit avoir 12 mots exactement (définitions des Astres)
     if(vec->size() == 0)		return true;
-    for(unsigned int i = 0; i < vec->size(); i++) {
+    // la ligne de référence contient les 2 valeurs d'univers
+    if((*vec)[0].size() != 2)		return true;
+    // Chaque case autre que la première doit avoir 12 mots exactement (définitions des Astres)
+    for(unsigned int i = 1; i < vec->size(); i++) {
 	if((*vec)[i].size() != 12) 	return true;
     }
+    // pas de problème, pas de problème
     return false;
     
 }
