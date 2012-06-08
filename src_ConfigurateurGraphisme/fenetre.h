@@ -68,7 +68,7 @@ class fenetre : public QWidget {
 	    QGroupBox* groupOptions;
 		QCheckBox* OPT_InvZoom;
 		QCheckBox* OPT_InvDefil;
-		//TODO: QCheckBox* OPT_DesactiverMusique;
+		QCheckBox* OPT_ActiverMusique;
 
     // INITIALISATION
 	void initialisationFenetre();

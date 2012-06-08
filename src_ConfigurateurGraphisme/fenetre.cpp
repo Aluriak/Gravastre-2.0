@@ -31,8 +31,10 @@ void fenetre::ecritureFichier() {
     // Variables intermédiaires
     bool inverserZoom = false;
     bool inverserDefil = false;
+    bool activerMusique = false;
     if(OPT_InvZoom->isChecked()) inverserZoom = true;
     if(OPT_InvDefil->isChecked()) inverserDefil = true;
+    if(OPT_ActiverMusique->isChecked()) activerMusique = true;
     int definition = 32;
     if(ECRAN_Definition->currentText() == DEFINITION_16)
 	definition = 16;
@@ -76,6 +78,7 @@ void fenetre::ecritureFichier() {
 	    <<":"<< VAL_PrecisionClic->value()
 	    <<":"<< inverserZoom
 	    <<":"<< inverserDefil
+	    <<":"<< activerMusique
     // QUATRIEME LIGNE
 	<<":"<<endl<< qCheminMusique->toStdString() << ":";
 
@@ -421,26 +424,29 @@ QVBoxLayout* fenetre::INI_GroupeNavigation() {
 
     // OPTIONS
     groupOptions = new QGroupBox("Options", this);
-    QVBoxLayout* layOptions = new QVBoxLayout;
+    QHBoxLayout* layOptions = new QHBoxLayout;
 	// 5: INVERSER ZOOM
 	// widget
 	    OPT_InvZoom = new QCheckBox("Inverser le zoom", this);
 		OPT_InvZoom->setChecked(false);
 		OPT_InvZoom->setToolTip("Inverse le sens du zoom opéré avec la molette de la sourie");
 	// Layouts
-	    QHBoxLayout* layInvZoom = new QHBoxLayout;
-		layInvZoom->addWidget(OPT_InvZoom);
-	// 5: Inversion Défilement
+		layOptions->addWidget(OPT_InvZoom);
+	// 6: INVERSION DÉFILEMENT
 	// widget
 	    OPT_InvDefil = new QCheckBox("Inverser le défilement", this);
 		OPT_InvDefil->setChecked(false);
 		OPT_InvDefil->setToolTip("Inverse le sens de défilement du cliqué-déposé du bouton droit de la sourie");
 	// Layouts
-	    QHBoxLayout* layInvDefil = new QHBoxLayout;
-		layInvDefil->addWidget(OPT_InvDefil);
+		layOptions->addWidget(OPT_InvDefil);
+	// 7: ACTIVATION MUSIQUE
+	// widget
+	    OPT_ActiverMusique = new QCheckBox("Musique", this);
+		OPT_ActiverMusique->setChecked(true);
+		OPT_ActiverMusique->setToolTip("Cocher pour laisser à l'utilisateur la possibilité de lancer ou de couper la musique");
+	// Layouts
+		layOptions->addWidget(OPT_ActiverMusique);
     // LAYOUT OPTIONS
-    layOptions->addLayout(layInvZoom);
-    layOptions->addLayout(layInvDefil);
     groupOptions->setLayout(layOptions);
 
 
