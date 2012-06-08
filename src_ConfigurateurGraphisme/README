@@ -1,0 +1,2 @@
+Après compilation, veillez à mettre l'exécutable dans le dossier parent, au côté de l'exécutable Gravastre.
+Ce besoin s'explique par le chemin utilisé par le configurateur pour rejoindre le fichier INI.Alk.
