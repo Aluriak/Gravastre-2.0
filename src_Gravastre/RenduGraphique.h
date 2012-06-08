@@ -46,6 +46,7 @@ class RenduGraphique {
 	int NAV_PasTab; // nombre de dt sautés avec la touche tab
 	float NAV_PrecisionClic; // précision du clic en px
 	bool NAV_InverserDefilement; // vrai si le défilement à la sourie doit être inversé
+	bool NAV_ActiverMusique; // vrai si l'utilisateur peut écouter et interargir avec la musique
 	// valeurs de sortie
 	bool affichage; // si vrai, la sortie standard est utilisée
 	std::string musique; // chemin vers le fichier musique

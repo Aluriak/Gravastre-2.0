@@ -49,7 +49,6 @@ RenduGraphique::RenduGraphique(bool aff) {
 				  SFML_ClrInterface, 
 				  0, 0,	// coordonnées du coin haut-gauche 
 				  app->GetWidth(), SFML_HauteurHauteInterface);
-				  // */
     // Fini ! 
     if(affichage)
 	std::cout << "INI: RenduGraphique initialisé !" << std::endl;
@@ -100,6 +99,8 @@ void RenduGraphique::boucleMaitresse() {
 	if(!msq.OpenFromFile(musique)) {
 	    FATAL_ERROR("MSQ: La musique n'a pas pu être démarrée", false);
 	    statMsq = 0; // on ne doit pas agir sur la musique !
+	} else if(!NAV_ActiverMusique) { // si pas musique autorisée
+	    statMsq = 0;
 	} else {
 	    msq.Play();
 	    msq.SetLoop(true); // on joue la musique en boucle
@@ -808,6 +809,7 @@ void RenduGraphique::INI_Valeurs() {
     NAV_PrecisionClic = str2float((*val)[2][3]);
     NAV_InverserZoom = str2num((*val)[2][4]);
     NAV_InverserDefilement = str2num((*val)[2][5]);
+    NAV_ActiverMusique = (bool)str2num((*val)[2][6]);
     // Valeurs de sortie
     musique = (*val)[3][0];
 }
@@ -820,12 +822,12 @@ bool RenduGraphique::estCorrompu(std::vector<std::vector<std::string> >* vec) {
     // le vector final doit avoir 4 cases
     // 		0: 15 cases (valeurs entières SFML)
     // 		1: 1 case  (chemin vers la police)
-    // 		2: 6 cases (valeurs de navigations)
+    // 		2: 7 cases (valeurs de navigations)
     // 		3: 1 cases (valeurs de sortie)
     if(vec->size() != 4)	return true;
     if((*vec)[0].size() != 15) 	return true;
     if((*vec)[1].size() != 1) 	return true;
-    if((*vec)[2].size() != 6) 	return true;
+    if((*vec)[2].size() != 7) 	return true;
     if((*vec)[3].size() != 1) 	return true;
     return false;
 }
