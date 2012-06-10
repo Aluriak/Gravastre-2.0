@@ -10,6 +10,9 @@ RenduGraphique::RenduGraphique(bool aff) {
     affichage = aff;
     selection = NULL; // pas d'astre sélectionné
     zoomActuel = 1; // le zoom de base est égal à 1
+    etat[ETAT_GENERAL] = 'N';
+    etat[ETAT_AXE] = ' ';
+    etat[ETAT_LIMITE] = '\0';
     INI_Valeurs(); // initialisation des valeurs utilisateurs
 
     // création de l'univers
@@ -116,7 +119,11 @@ void RenduGraphique::boucleMaitresse() {
 	    // si un astre est suivis (on suit la sélection), avec sécurité
 	    if(suivreAstre && selection != NULL) {
 		vue->Move(selection->GetVitesse().x,selection->GetVitesse().y);
+		// si on suit un astre, on indique bien ce mode !
+		etat[ETAT_GENERAL] = 'R';
 	    }
+	    else 
+		etat[ETAT_GENERAL] = 'N';
 	}
 	// gestion évènementielle
 	while(app->GetEvent(event)) {
@@ -153,6 +160,8 @@ void RenduGraphique::boucleMaitresse() {
 				zoomActuel /= NAV_CoefficientMolette;
 				vue->Zoom(1/NAV_CoefficientMolette);
 			    } 
+			    // de plus, on recentre la fenêtre sur l'origine
+			    vue->SetCenter(0,0);
 			} 
 			break;
 		    case Key::Space: // suivre l'astre sélectionné
@@ -396,7 +405,7 @@ void RenduGraphique::affichageSFML() {
     // affichage de la boite de dialogue en bas à droite, contenant les infos relatives à l'astre sélectionné
     if(selection != NULL) 
 	bia->Draw(selection);
-    bhi->Draw(tampon, directive); // barre du haut affichée !
+    bhi->Draw(tampon, directive, etat); // barre du haut affichée !
 }
 
 
@@ -509,6 +518,8 @@ void RenduGraphique::modificationAstre(bool ajout) {
     bool termine = false;
     std::string stmp; // chaine intermédiaire
     bool AxeX = true; // vrai si l'axe visé est X, faux si Y
+	etat[ETAT_AXE] = 'X'; // l'axe X est modifié
+	etat[ETAT_GENERAL] = 'A'; // on indique qu'un astre est en cours de modification
     bool clicGauche = false; // vrai si le bouton gauche de la sourie est cliqué
 
     // Directive à afficher
@@ -605,9 +616,11 @@ void RenduGraphique::modificationAstre(bool ajout) {
 			break;
 		    case Key::X:
 			AxeX = true;
+			etat[ETAT_AXE] = 'X'; // l'axe considéré est indiqué
 			break;
 		    case Key::Y:
 			AxeX = false;
+			etat[ETAT_AXE] = 'Y'; // l'axe considéré est modifié
 			break;
 		    case Key::Back: // on retire la dernière case du tampon
 			if(tampon.size() == 0) break;
@@ -725,6 +738,9 @@ void RenduGraphique::modificationAstre(bool ajout) {
 	// actualisation de l'écran
 	app->Display();
     } // fin de boucle de modification
+
+    etat[ETAT_GENERAL] = 'N'; // on indique qu'on reviens au mode normal
+    etat[ETAT_AXE] = ' ';
 }
 
 

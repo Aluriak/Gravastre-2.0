@@ -52,6 +52,7 @@ class RenduGraphique {
 	std::string musique; // chemin vers le fichier musique
 	std::string tampon; // tampon d'entrée utilisateur
 	std::string directive; // directive à afficher dans la barre haute
+	char etat[3]; // indique ce qui est en cours de modification
 
     // METHODE
 	void affichageSFML(); // affiche les astres à l'écran
