@@ -9,7 +9,7 @@ class BoiteHauteInterface {
 			    sf::Color, int, int, int, int);
 
     // METHODES
-	void Draw(std::string tampon, std::string directive); // Dessine la barre dans app suivant les arguments envoyés
+	void Draw(std::string tampon, std::string directive, char* etat = NULL); // Dessine la barre dans app suivant les arguments envoyés
 
     // ACCESSEURS
     
