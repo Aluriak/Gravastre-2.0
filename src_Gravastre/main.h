@@ -23,10 +23,10 @@
  */
 // PRGM
     #define PRGM_NAME "Gravastre 2.0"
-    #define PRGM_TAILLEBOITEINFO_Y 250
-    #define PRGM_TAILLEBOITEINFO_X 150
-    #define PRGM_QUESTION_QUITTER "Quitter ?"
     #define PRGM_NOM_REFERENCE "Origine"
+    #define ETAT_GENERAL 0
+    #define ETAT_AXE 1
+    #define ETAT_LIMITE 2
 // FILES
     #define FILE_ERR "Fichiers/Erreur.txt" // contient les messages d'erreur
     #define FILE_INI "Fichiers/INI.Alk"    // contient les valeurs utilisateurs
