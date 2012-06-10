@@ -21,12 +21,14 @@ class fenetre : public QWidget {
 	void choisirCouleurInterface(); // Demande une couleur à l'utilisateur, puis utilise cette couleur comme couleur d'interface
 	void choisirCheminPolice(); // demande un chemin vers une police de l'utilisateur, et la sauvegarde dans le QString qCheminPolice
 	void choisirCheminMusique(); // demande un chemin vers une musique de format lisible par la SFML, et le sauvegarde dans la QString qCheminMusique
+	void EnregistrerEtQuitter(); // enregistre la configuration, puis quitte le programme
 
     private:
     // ATTRIBUTS
 	QGroupBox* groupPrgm;
 	    QPushButton* P_Quitter;
 	    QPushButton* P_Enregistrer;
+	    QPushButton* P_EnrEtQuit;
 
 	QGroupBox* groupGraphique;
 	    QGroupBox* groupEcran;

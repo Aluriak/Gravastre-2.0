@@ -130,9 +130,9 @@ void fenetre::choisirCouleurInterface() {
 void fenetre::choisirCheminPolice() {
     QString inter = QFileDialog::getOpenFileName(this, "Choisir la police", QString(), "Polices (*.ttf)");
     if(inter == *qCheminPolice) {
-	QMessageBox::information(this, "Police", "Vous avez conservé la police choisie utlérieurement");
+	//QMessageBox::information(this, "Police", "Vous avez conservé la police choisie utlérieurement");
     } else {
-	QMessageBox::information(this, "Police", "Vous avez choisi la police " + inter);
+	//QMessageBox::information(this, "Police", "Vous avez choisi la police " + inter);
 	*qCheminPolice = inter;
 	AFF_LabPolice->setText(inter);
     }
@@ -143,13 +143,22 @@ void fenetre::choisirCheminPolice() {
 void fenetre::choisirCheminMusique() {
     QString inter = QFileDialog::getOpenFileName(this, "Choisir la musique", QString(), "Musiques (*.flac *.wav *.ogg)");
     if(inter == *qCheminMusique) {
-	QMessageBox::information(this, "Musique", "Vous avez conservé la musique choisie utlérieurement");
+	//QMessageBox::information(this, "Musique", "Vous avez conservé la musique choisie utlérieurement");
     } else {
-	QMessageBox::information(this, "Musique", "Vous avez choisi la musique " + inter);
+	//QMessageBox::information(this, "Musique", "Vous avez choisi la musique " + inter);
 	*qCheminMusique = inter;
 	VAL_LabMusique->setText(inter);
     }
 }
+
+
+// enregistre la configuration, puis quitte le programme
+void fenetre::EnregistrerEtQuitter() {
+    ecritureFichier(); // on écrit dans le fichier
+    qApp->quit(); // on quitte
+}
+
+
 
 
 
@@ -469,6 +478,12 @@ QHBoxLayout* fenetre::INI_GroupeProgramme() {
 	P_Quitter = new QPushButton("Quitter sans enregistrer", this);
 	layButton->addWidget(P_Quitter);
 	connect(P_Quitter, SIGNAL(clicked()), qApp, SLOT(quit()));
+    // BOUTON ENREGISTRER ET QUITTER
+	P_EnrEtQuit = new QPushButton("Enregistrer et Quitter", 
+					this);
+	layButton->addWidget(P_EnrEtQuit);
+	connect(P_EnrEtQuit, SIGNAL(clicked()), 
+		this, SLOT(EnregistrerEtQuitter()));
     // BOUTON ENREGISTRER
 	P_Enregistrer = new QPushButton("Enregistrer cette configuration", 
 					this);
