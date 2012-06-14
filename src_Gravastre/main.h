@@ -32,7 +32,9 @@
     #define FILE_INI "Fichiers/INI.Alk"    // contient les valeurs utilisateurs
     #define FILE_AST "Fichiers/AST.Alk"    // contient les astres
     #define FILE_OUT "Fichiers/Out.Alk"	// deviens sortie standard si besoin
-
+// CONVERTION DE VALEURS (multiplier les valeurs réelles par ces valeurs)
+    #define CONVERTION_KG 1e-17 // car tous les poids sont  divisé par 1e17 
+    #define CONVERTION_KM 1/500000000 // car 300px = 1 ua = 150 000 000 000 m
 
 
 /*
