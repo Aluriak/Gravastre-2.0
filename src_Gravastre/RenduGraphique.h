@@ -61,8 +61,15 @@ class RenduGraphique {
 	void modificationAstre(bool); // permet à l'utilisateur de modifier un astre au clavier et à la sourie, en remplacant(faux) ou en ajoutant(vrai)
 	OBJET_INTERFACE selectionInterface(int x, int y); // renvois vrai si l'interface à été cliquée. Gère les clics sur l'interface.
     // INITIALISATION
-	void INI_Valeurs(); // initialise les valeurs de renduGraphique et d'Univers
+	void INI_Valeurs(); // initialise les valeurs de renduGraphique
+	void valeursParDefaut(); // initialise les valeurs de renduGraphique selon les valeurs par défaut.
 	bool estCorrompu(std::vector<std::vector<std::string> >*); // renvoi vrai si le vector n'a pas le nombre de cases attendu.
+    
+    /* A VENIR !
+    // METHODES FPV
+	void gestionEvenement(); // centre nerveux du programme
+	void affichageFPV(); // calculs et affichages
+    // */
 };
 
 

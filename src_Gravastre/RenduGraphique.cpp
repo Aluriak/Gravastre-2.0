@@ -100,7 +100,7 @@ void RenduGraphique::boucleMaitresse() {
 	int statMsq = 1; // mit à faux si la musique n'est pas utilisable
 	Music msq;
 	if(!msq.OpenFromFile(musique)) {
-	    FATAL_ERROR("MSQ: La musique n'a pas pu être démarrée", false);
+	    FATAL_ERROR("INI: Le fichier de musique n'a pas été ouvert", false);
 	    statMsq = 0; // on ne doit pas agir sur la musique !
 	} else if(!NAV_ActiverMusique) { // si pas musique autorisée
 	    statMsq = 0;
@@ -780,16 +780,24 @@ OBJET_INTERFACE RenduGraphique::selectionInterface(int x, int y) {
 void RenduGraphique::INI_Valeurs() {
     // on créé un lecteur de fichier d'initialisation
     LecteurFichierINI lfi(FILE_INI, ':');
+    // on initialise le vector accueillant les résultats
+    std::vector<std::vector<std::string> > *val = lfi.getValeurs();
     // on lui fait lire le fichier FILE_INI avec ':' en séparateur
     if(lfi.lecture() <= 0) {
-	FATAL_ERROR("INI: Le fichier FILE_INI n'a pas été ouvert");
+	FATAL_ERROR("INI: Le fichier FILE_INI n'a pas été ouvert", false);
+	valeursParDefaut(); // en l'absence de fichier de configuration, on prend les valeurs par défaut
+	return;
+    } else {
+	// on fait un pointeur vers le résultat
+	val = lfi.getValeurs();
+	// maintenant, on regarde si le fichier n'est pas corrompu
+	if(estCorrompu(val)) {
+	    FATAL_ERROR("INI: Le fichier FILE_INI est corrompu", false);
+	    valeursParDefaut(); // en l'absence de fichier de configuration, on prend les valeurs par défaut
+	    return;
+	}
     }
-    // on fait un pointeur vers le résultat
-    std::vector<std::vector<std::string> > *val = lfi.getValeurs();
-    // maintenant, on regarde si le fichier n'est pas corrompu
-    if(estCorrompu(val)) {
-	FATAL_ERROR("INI: Le fichier FILE_INI est corrompu");
-    }
+
     // le fichier n'est pas corrompu, on peut donc utiliser utiliser le vector sans sourcis
     SFML_TailleEcranX = str2num((*val)[0][0]);
     SFML_TailleEcranY = str2num((*val)[0][1]);
@@ -828,6 +836,38 @@ void RenduGraphique::INI_Valeurs() {
     NAV_ActiverMusique = (bool)str2num((*val)[2][6]);
     // Valeurs de sortie
     musique = (*val)[3][0];
+}
+
+
+// initialise les valeurs de renduGraphique selon les valeurs par défaut.
+void RenduGraphique::valeursParDefaut() {
+    SFML_TailleEcranX = 1000;
+    SFML_TailleEcranY = 500;
+    SFML_TailleBoiteInfoX = 250;
+    SFML_TailleBoiteInfoY = 250;
+    SFML_HauteurHauteInterface = 20;
+    SFML_Definition = 32;
+    SFML_ClrInterface = Color(80, 0, 255); 
+    SFML_NiveauAntiCrenelage = 4;
+    SFML_FPS = 30;
+    SFML_BordAstreSelection = 5;
+    SFML_TaillePolice = 12;
+    SFML_TaillePolBoiteInfo = 14;
+    SFML_TPolHauteInterface = 12;
+    // on n'arrête pas le programme, mais on dit que ça a merdé
+    FATAL_ERROR("INI: le fichier de police n'a pas été ouvert", false);
+    // on prend comme police la police de base
+    police = Font::GetDefaultFont();
+    // valeurs de navigation
+    NAV_PasFleche = 20;
+    NAV_CoefficientMolette = 1.1;
+    NAV_PasTab = 100;
+    NAV_PrecisionClic = 5;
+    NAV_InverserZoom = 0;
+    NAV_InverserDefilement = 0;
+    NAV_ActiverMusique = true;
+    // Valeurs de sortie
+    musique = "Fichiers/Ressources/WelcomeToNova-Emitremmus.flac";
 }
 
 
