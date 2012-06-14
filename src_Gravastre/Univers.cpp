@@ -152,6 +152,7 @@ void Univers::listeAstreParDefaut() {
 }
 
 
+
 // Remplis la liste d'astres selon les données brutes
 void Univers::INI_Astres() {
     // la première chose à faire, c'est de mettre la référence spatiale universelle, de classe ReferenceUnivers qui est un Astre par héritage. (et bénéficie du polymorphisme).
@@ -192,7 +193,7 @@ void Univers::INI_Astres() {
 		    sf::String((*vec)[i][0], *police, taillePolice),// arg nom
 		    str2float((*vec)[i][1]),			// arg X
 		    str2float((*vec)[i][2]),			// arg Y
-		    str2float((*vec)[i][3]),			// arg masse
+		    str2float((*vec)[i][3])*CONVERTION_KG,	// arg masse
 		    str2float((*vec)[i][4]),			// arg diametre
 		    clr,					// arg couleur
 		    str2float((*vec)[i][8]),			// arg VX
