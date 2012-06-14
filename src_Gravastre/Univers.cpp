@@ -123,21 +123,60 @@ void Univers::setBorneVitesse(int bv) {
 /*
  * METHODE PRIVEE
  */
+// remplis la liste d'astre avec les astres par défaut
+void Univers::listeAstreParDefaut() {
+    // constantes universelles
+	G = 6.67e-11;
+	bV = 10;
+    // Soleil
+	sf::String Soleil("Soleil", *police, taillePolice);
+	sf::String Mercure("Mercure", *police, taillePolice);
+	sf::String Venus("Venus", *police, taillePolice);
+	sf::String Terre("Terre", *police, taillePolice);
+	sf::String Lune("           et Lune", *police, taillePolice);
+	sf::String Mars("Mars", *police, taillePolice);
+	sf::String Chauffard("Chauffard", *police, taillePolice);
+	astres.push_back(new Astre(this, Soleil, 122,0,1e13,14,sf::Color(255,255,0), 0,0,0,0));
+    // Mercure
+	astres.push_back(new Astre(this, Mercure, 122,120,1e7,4,sf::Color(255,125,0), 2.36,0,0,0));
+    // Vénus
+	astres.push_back(new Astre(this, Venus, 122,-210,1e7,4,sf::Color(255,0,125), -1.78,0,0,0));
+    // Terre
+	astres.push_back(new Astre(this, Terre, 422,0,1e7,4,sf::Color(0,0,255), 0,-1.49,0,0));
+    // Lune
+	astres.push_back(new Astre(this, Lune, 422.6,0,7e5,2,sf::Color(255,255,255), 0,-1.52334,0,0));
+    // Mars
+	astres.push_back(new Astre(this, Mars, -328,0,1e7,4,sf::Color(255,0,0), 0,1.21,0,0));
+    // Chauffard
+	astres.push_back(new Astre(this, Chauffard, -878,120,1e5,2,sf::Color(0,255,0), 3,0,0,0));
+}
+
+
 // Remplis la liste d'astres selon les données brutes
 void Univers::INI_Astres() {
-    // on créé un lecteur de fichier d'initialisation
-    LecteurFichierINI lfi(FILE_AST, ':');
-    if(lfi.lecture() <= 0) { // gestion d'erreur en tout genre
-	FATAL_ERROR("INI: Le fichier FILE_AST n'a pas été ouvert");
-    }
-
-    // on déclare un pointeur vers les résulats, et on vérifie qu'ils ne sont pas corrompus
-    vector<vector<string> > *vec = lfi.getValeurs();
-    if(estCorrompu(vec))
-	FATAL_ERROR("INI: Le fichier FILE_AST est corrompu");
-
     // la première chose à faire, c'est de mettre la référence spatiale universelle, de classe ReferenceUnivers qui est un Astre par héritage. (et bénéficie du polymorphisme).
     astres.push_back(new ReferenceUnivers(this, police));
+
+    // on créé un lecteur de fichier d'initialisation
+    LecteurFichierINI lfi(FILE_AST, ':');
+    vector<vector<string> > *vec; // vecteur contenant les résultat
+    if(lfi.lecture() <= 0) { // gestion d'erreur en tout genre
+	FATAL_ERROR("INI: Le fichier FILE_AST n'a pas été ouvert", false);
+	listeAstreParDefaut(); // la liste d'astre ne peut être constituée à partir du fichier, on utilise donc les valeurs par défaut
+	if(affichage)
+	    cout << "INI: \tListe des Astres par défaut chargée" <<endl;
+	return;
+    } else {
+	// on déclare un pointeur vers les résulats, et on vérifie qu'ils ne sont pas corrompus
+	vec = lfi.getValeurs();
+	if(estCorrompu(vec)) {
+	    FATAL_ERROR("INI: Le fichier FILE_AST est corrompu", false);
+	    listeAstreParDefaut(); // la liste d'astre ne peut être constituée à partir du fichier, on utilise donc les valeurs par défaut
+	    if(affichage)
+		cout << "INI: \tListe des Astres par défaut chargée" <<endl;
+	    return;
+	}
+    }
 
     // la première ligne du fichier contient des valeurs d'Univers
     G = str2float((*vec)[0][0]);

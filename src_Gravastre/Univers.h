@@ -34,6 +34,7 @@ class Univers {
 	int taillePolice;
 
     // METHODES
+	void listeAstreParDefaut(); // remplis la liste d'astre avec les astres par défaut
 	void INI_Astres(); // Remplis la liste d'astre selon les données brutes
 	bool estCorrompu(std::vector<std::vector<std::string> >*); // renvois vrai si le vector en arg() n'est pas de taille attendue pour l'initialisation des Astres
 	void liberationMemoire(); // libère la mémoire prise par la classe Univers
