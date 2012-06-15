@@ -79,6 +79,7 @@ BoiteInfoAstre::BoiteInfoAstre( RenderWindow *rw, 	// fenetre
 // affiche tous les objets drawables sur app
 void BoiteInfoAstre::Draw(Astre *astre) {
     float inter = 0; // contient la valeur étudiée de l'astre à traiter (permet de limiter le nombre d'accès à cette valeur via l'astre)
+    float calcul = 0; // contient des valeurs de calculs (évite de les refaire)
     // CADRE
     // on affiche le cadre
 	app->Draw(cadre);
@@ -92,33 +93,51 @@ void BoiteInfoAstre::Draw(Astre *astre) {
 		float2str(astre->GetMasse()/CONVERTION_KG));
 	inter = astre->GetPosition().x;
 	    donnees[2].SetText("PositionX : " + float2str(inter));
-	    if(inter - tabEvolValeurs[0] < 0) 	tabVariation[0] = false;
-	    else				tabVariation[0] = true;
+	    calcul = inter - tabEvolValeurs[0];
+	    if(calcul < 0.0)
+		tabVariation[0] = false;
+	    else if(calcul > 0.0)
+		tabVariation[0] = true;
 	    tabEvolValeurs[0] = inter;
 	inter = astre->GetPosition().y;
 	    donnees[3].SetText("PositionY : " + float2str(inter));
-	    if(inter - tabEvolValeurs[1] < 0) 	tabVariation[1] = false;
-	    else				tabVariation[1] = true;
+	    calcul = inter - tabEvolValeurs[1];
+	    if(calcul < 0.0)
+		tabVariation[1] = false;
+	    else if(calcul > 0.0)
+		tabVariation[1] = true;
 	    tabEvolValeurs[1] = inter;
 	inter = astre->GetVitesse().x;
 	    donnees[4].SetText("VitesseX : " + float2str(inter));
-	    if(inter - tabEvolValeurs[2] < 0) 	tabVariation[2] = false;
-	    else				tabVariation[2] = true;
+	    calcul = inter - tabEvolValeurs[2];
+	    if(calcul < 0.0)
+		tabVariation[2] = false;
+	    else if(calcul > 0.0)
+		tabVariation[2] = true;
 	    tabEvolValeurs[2] = inter;
 	inter = astre->GetVitesse().y;
 	    donnees[5].SetText("VitesseY : " + float2str(inter));
-	    if(inter - tabEvolValeurs[3] < 0) 	tabVariation[3] = false;
-	    else				tabVariation[3] = true;
+	    calcul = inter - tabEvolValeurs[3];
+	    if(calcul < 0.0)
+		tabVariation[3] = false;
+	    else if(calcul > 0.0)
+		tabVariation[3] = true;
 	    tabEvolValeurs[3] = inter;
 	inter = astre->GetAcceleration().x;
 	    donnees[6].SetText("AccelerationX : " + float2str(inter));
-	    if(inter - tabEvolValeurs[4] < 0) 	tabVariation[4] = false;
-	    else				tabVariation[4] = true;
+	    calcul = inter - tabEvolValeurs[4];
+	    if(calcul < 0.0)
+		tabVariation[4] = false;
+	    else if(calcul > 0.0)
+		tabVariation[4] = true;
 	    tabEvolValeurs[4] = inter;
 	inter = astre->GetAcceleration().y;
 	    donnees[7].SetText("AccelerationY : " + float2str(inter));
-	    if(inter - tabEvolValeurs[5] < 0) 	tabVariation[5] = false;
-	    else				tabVariation[5] = true;
+	    calcul = inter - tabEvolValeurs[5];
+	    if(calcul < 0.0)
+		tabVariation[5] = false;
+	    else if(calcul > 0.0)
+		tabVariation[5] = true;
 	    tabEvolValeurs[5] = inter;
     
     // on place les différents éléments 
@@ -138,7 +157,7 @@ void BoiteInfoAstre::Draw(Astre *astre) {
 	// affichage des flèches de variation si traitement de pos, vit ou acc.
 	if(!problemeImage && i > 1) {
 	    Sprite sprite;
-	    if(tabVariation[i]) // si croissance
+	    if(tabVariation[i-2]) // si croissance
 		sprite.SetImage(varCroit);
 	    else // si décroissance
 		sprite.SetImage(varDecroit);
@@ -146,7 +165,7 @@ void BoiteInfoAstre::Draw(Astre *astre) {
 				    AFF_Position.y+30+i*2*taillePolice);
 	    app->Draw(sprite);
 	}
-    }
+    } // fin boucle d'affichage
 }
 
 
