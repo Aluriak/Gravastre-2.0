@@ -22,7 +22,7 @@ __Touches disponibles :__
     - Flèches, pour se déplacer
     - Pavé Numérique et Chiffres clavier, pour pouvoir donner des nombres (affichés en haut). Utilisez la touche E pour les puissances et le tiret '-' pour le signe
     - Pause, pour mettre en pause
-    - Entrée, pour revenir au zoom normal
+    - Entrée, pour revenir au zoom normal et recentrer la fenêtre sur l'origine
     - Espace, pour prendre comme référentiel l'astre sélectionné
     - Escape, deux fois pour quitter pour quitter
     - Supr, pour supprimer l'astre en cours de modification
