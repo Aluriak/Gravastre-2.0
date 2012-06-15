@@ -693,16 +693,17 @@ void RenduGraphique::modificationAstre(bool ajout) {
 		    case Key::Num9:
 			tampon += '9';
 			break;
+		    case Key::Comma: // virgule, pour les nombres flottants
+		    case Key::Period: // ou le point
+			// La SFML ne gère pas le point du keypad
+			tampon += '.';
+			break;
 		    case Key::Subtract: // utile pour faire des négatifs
 			tampon += '-';
 			break;
 		    case Key::E: // utile pour faire des puissances
 			tampon += 'e';
 			break;
-		    /*	PRBM: la SFML ne connaît pas le point >.<'
-		    case '.': // utile pour faire des floattants
-			tampon += '.';
-			break; // */
 
 		    default:
 			break;
