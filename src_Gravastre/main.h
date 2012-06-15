@@ -32,6 +32,9 @@
     #define FILE_INI "Fichiers/INI.Alk"    // contient les valeurs utilisateurs
     #define FILE_AST "Fichiers/AST.Alk"    // contient les astres
     #define FILE_OUT "Fichiers/Out.Alk"	// deviens sortie standard si besoin
+// IMAGES
+    #define BIA_IMAGE_CROIT "Fichiers/Ressources/varCroit.bmp"
+    #define BIA_IMAGE_DECROIT "Fichiers/Ressources/varDecroit.bmp"
 // CONVERTION DE VALEURS 
 // (multiplier les valeurs réelles par ces valeurs pour avoir les valeurs de calcul du programme)
     #define CONVERTION_KG 1e-17 // car tous les poids sont  divisé par 1e17 
