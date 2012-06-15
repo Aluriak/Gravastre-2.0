@@ -144,7 +144,7 @@ void Univers::listeAstreParDefaut() {
     // Terre
 	astres.push_back(new Astre(this, Terre, 422,0,1e07,4,sf::Color(0,0,255), 0,-1.49,0,0));
     // Lune
-	astres.push_back(new Astre(this, Lune, 422.6,0,7e22,2,sf::Color(255,255,255), 0,-1.52334,0,0));
+	astres.push_back(new Astre(this, Lune, 422.6,0,7e05,2,sf::Color(255,255,255), 0,-1.52334,0,0));
     // Mars
 	astres.push_back(new Astre(this, Mars, -328,0,1e07,4,sf::Color(255,0,0), 0,1.21,0,0));
     // Chauffard
