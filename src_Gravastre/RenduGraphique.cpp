@@ -272,6 +272,8 @@ void RenduGraphique::boucleMaitresse() {
 			tampon += '9';
 			break;
 		    case Key::Comma: // virgule, pour les nombres flottants
+		    case Key::Period: // ou le point
+			// La SFML ne gère pas le point du keypad
 			tampon += '.';
 			break;
 		    case Key::Subtract: // utile pour faire des négatifs
@@ -618,9 +620,11 @@ void RenduGraphique::modificationAstre(bool ajout) {
 			break;
 		    case Key::M: // modification de la masse
 			if(ajout)
-			    selection->SetMasse(str2float(tampon));
+			    selection->SetMasse(str2float(tampon)
+							*CONVERTION_KG);
 			else
-			    selection->AddMasse(str2float(tampon));
+			    selection->AddMasse(str2float(tampon)
+							*CONVERTION_KG);
 			if(affichage)
 			    std::cout << "Nouvelle Masse : " 
 				      << str2float(tampon) << std::endl;
