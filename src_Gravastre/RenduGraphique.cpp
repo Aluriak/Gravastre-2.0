@@ -274,6 +274,16 @@ void RenduGraphique::boucleMaitresse() {
 		    case Key::Subtract: // utile pour faire des négatifs
 			tampon += '-';
 			break;
+		    case Key::Add: // ajoute le tampon au FPS (max 1000, min 1)
+			SFML_FPS += str2num(tampon);
+			if(SFML_FPS > 1000) SFML_FPS = 1000;
+			else if(SFML_FPS < 1) SFML_FPS = 1;
+			tampon = "";
+			app->SetFramerateLimit(SFML_FPS);
+			if(affichage)
+			    std::cout << "Nouvelle valeur de FPS : " 
+					<< SFML_FPS << std::endl;
+			break;
 
 		    // dans tous les autres cas :
 		    default:
