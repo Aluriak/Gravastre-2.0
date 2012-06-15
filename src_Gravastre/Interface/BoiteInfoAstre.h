@@ -29,6 +29,11 @@ class BoiteInfoAstre {
 	// affichages graphiques
 	sf::String donnees[8]; // données de l'astre
 	sf::Shape cadre; // cadre contenant les données
+	sf::Image varCroit; // flèche allant vers le haut
+	sf::Image varDecroit; // flèche allant vers le bas
+	    bool problemeImage; // indicateur sur la capacité à utiliser les images (on les utilise toutes, ou aucune)
+	float tabEvolValeurs[6]; // dernières valeurs, servant à déterminer si chaque valeur est en croissance ou décroissance (et agir sure les boléens de variation en conséquence
+	bool tabVariation[6]; // vrai si croît, faux sinon. Sert à l'affichage des flèches pour les variations de positions, vitesses et accélérations
 };
 
 
