@@ -27,6 +27,7 @@ __Touches disponibles :__
     - Espace, pour prendre comme référentiel l'astre sélectionné
     - Escape, deux fois pour quitter pour quitter
     - Supr, pour supprimer l'astre en cours de modification
+    - +, pour ajouter le tampon au nombre d'image par seconde(FPS). Plus vous augmentez ce nombre compris entre 1 et 1000, plus l'ordinateur fait de calcul par secondes, et plus la simulation avance vite. Utilisez les nombres négatifs pour diminuer le FPS.
 
 
 
