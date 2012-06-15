@@ -160,9 +160,9 @@ void RenduGraphique::boucleMaitresse() {
 				zoomActuel /= NAV_CoefficientMolette;
 				vue->Zoom(1/NAV_CoefficientMolette);
 			    } 
-			    // de plus, on recentre la fenêtre sur l'origine
-			    vue->SetCenter(0,0);
 			} 
+			// de plus, on recentre la fenêtre sur l'origine
+			vue->SetCenter(0,0);
 			break;
 		    case Key::Space: // suivre l'astre sélectionné
 			suivreAstre = false; 
