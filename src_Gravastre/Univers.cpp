@@ -138,17 +138,17 @@ void Univers::listeAstreParDefaut() {
 	sf::String Chauffard("Chauffard", *police, taillePolice);
 	astres.push_back(new Astre(this, Soleil, 122,0,1e13,14,sf::Color(255,255,0), 0,0,0,0));
     // Mercure
-	astres.push_back(new Astre(this, Mercure, 122,120,1e7,4,sf::Color(255,125,0), 2.36,0,0,0));
+	astres.push_back(new Astre(this, Mercure, 122,120,1e07,4,sf::Color(255,125,0), 2.36,0,0,0));
     // Vénus
-	astres.push_back(new Astre(this, Venus, 122,-210,1e7,4,sf::Color(255,0,125), -1.78,0,0,0));
+	astres.push_back(new Astre(this, Venus, 122,-210,1e07,4,sf::Color(255,0,125), -1.78,0,0,0));
     // Terre
-	astres.push_back(new Astre(this, Terre, 422,0,1e7,4,sf::Color(0,0,255), 0,-1.49,0,0));
+	astres.push_back(new Astre(this, Terre, 422,0,1e07,4,sf::Color(0,0,255), 0,-1.49,0,0));
     // Lune
-	astres.push_back(new Astre(this, Lune, 422.6,0,7e5,2,sf::Color(255,255,255), 0,-1.52334,0,0));
+	astres.push_back(new Astre(this, Lune, 422.6,0,7e22,2,sf::Color(255,255,255), 0,-1.52334,0,0));
     // Mars
-	astres.push_back(new Astre(this, Mars, -328,0,1e7,4,sf::Color(255,0,0), 0,1.21,0,0));
+	astres.push_back(new Astre(this, Mars, -328,0,1e07,4,sf::Color(255,0,0), 0,1.21,0,0));
     // Chauffard
-	astres.push_back(new Astre(this, Chauffard, -878,120,1e5,2,sf::Color(0,255,0), 3,0,0,0));
+	astres.push_back(new Astre(this, Chauffard, -878,120,1e05,2,sf::Color(0,255,0), 3,0,0,0));
 }
 
 
