@@ -61,7 +61,7 @@ void BoiteInfoAstre::Draw(Astre *astre) {
     donnees[0] = astre->GetNom();
 	// le nom est mit en plus gros
 	donnees[0].SetSize(donnees[0].GetSize()*3);
-    donnees[1] = String("Masse : " + float2str(astre->GetMasse()), 
+    donnees[1] = String("Masse : " + float2str(astre->GetMasse()/CONVERTION_KG),
 	    *police, taillePolice);
     donnees[2] = String("PositionX : " + float2str(astre->GetPosition().x), 
 	    *police, taillePolice);
