@@ -303,8 +303,8 @@ void RenduGraphique::boucleMaitresse() {
 			// on a cliqué sur la BoiteInfoAstre
 			// on indique donc que cette boite peut-être déplacée au mouvement de sourie, jusqu'à relâchement du bouton
 			boiteInfoBougee = true;
-		    } else if(oi == Barre) {
-			// TODO
+		    } else if(oi == Barre) { // si clique sur la barre haute
+			// rien à faire pour le moment
 		    }
 		}
 	    }
