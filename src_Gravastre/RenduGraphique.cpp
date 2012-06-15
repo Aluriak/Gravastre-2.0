@@ -271,6 +271,9 @@ void RenduGraphique::boucleMaitresse() {
 		    case Key::Num9:
 			tampon += '9';
 			break;
+		    case Key::Comma: // virgule, pour les nombres flottants
+			tampon += '.';
+			break;
 		    case Key::Subtract: // utile pour faire des négatifs
 			tampon += '-';
 			break;
