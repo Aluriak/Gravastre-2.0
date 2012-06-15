@@ -15,6 +15,7 @@ Gravastre peut-être lancé avec des options dans la boite de commande.
     -i : pas d'intialisation des fichiers de sortie, notamment le fichier d'erreur.
 
 
+
 __Touches disponibles :__ 
     - M, pour arrêter/faire jouer la musique
     - A, pour remplacer une propriété de l'astre sélectionné (ctrl + a pour ajouter à la valeur)
@@ -27,16 +28,26 @@ __Touches disponibles :__
     - Escape, deux fois pour quitter pour quitter
     - Supr, pour supprimer l'astre en cours de modification
 
+
+
 __Utilisation de la sourie :__
     - Clic droit, utilisé en cliqué-glissé permet de bouger le cadre
     - Clic gauche, sur un astre, permet de le sélectionner. Sinon, l'astre est déselectionné (en modification, permet de déplacer l'astre)
     - Clic gauche, utilisé en cliqué-glissé sur le cadre d'information de l'astre sélectionné permet de bouger ce dernier
     - Molette, pour le zoom
 
-__Modifier un astre :__ // incomplet
+
+
+__Modifier un astre :__ 
 Chose possible en sélectionnant l'astre voulut et en appuyant sur A. (ou ctrl+a pour garder l'ancienne valeur et l'ajouter à la nouvelle)
 La simulation est mise en pause, et le tampon est vidé.
-Remplissez ce dernier (avec le pavé numérique), puis choisissez quel paramètre utiliser.
+Remplissez ce dernier (avec le pavé numérique), puis choisissez quel paramètre utiliser en utilisant les touches associées
+Parmi les paramètres, on trouve :
+    - la masse, avec la touche M
+    - la vitesse, avec la touche V (appuyer sur X ou Y juste avant permet de choisir l'axe sur lequel la vitesse sera appliquée/ajoutée)
+    - l'accélération, avec la touche A (appuyer sur X ou Y juste avant permet de choisir l'axe sur lequel l'accélération sera appliquée/ajoutée)
+    - la touche Escape, pour annuler la modification
+Il est également possible de modifier la position de l'astre, en cliquant-glissant à l'endroit souhaité.
 
 Exemple :
 taper successivement "1e13M" modifie la masse de l'astre en 1*10^13 unité de poids
@@ -44,11 +55,11 @@ taper successivement "1e13M" modifie la masse de l'astre en 1*10^13 unité de po
 
 
 
-__Indications sur les unités utilisées__ : 
-Les unitées utilisées ne correspondent pas à une valeur réelle.
-Cependant, un ordre de grandeur est compréhensible, et calculable.
-300 px équivaux environ à 1 unité astronomique. (1e11 mètres)
-Multipliez les poids par 1e17 pour avoir des poids réalistes
+__Indications sur les unités utilisées__ :
+Le configurateur d'Univers enregistre les poids demandés par l'utilisateur. Cependant, Gravastre effectue ses calculs en considérant tous les poids multipliés par 1e-17, pour des raisons de conversions de distance. Ainsi, si vous demandez un Astre avec une masse équivalente à celle de la Terre (5.94e24), Gravastre lira cette valeur et la convertira pour avoir 5.94e7. Il opèrera cette convertion à l'envers pour que, lorsque vous sélectionnez un astre, ce soit le poids demandé qui soit affiché.
+300 px équivalent à environ 1 unité astronomique. (1.5e11 mètres)
+Multipliez les poids par 1e-17 pour obtenir les valeurs avec lesquelles travaille Gravastre.
+
 
 
 __Man Page__ :
