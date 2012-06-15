@@ -73,12 +73,12 @@ void Astre::calculsdt(std::vector<Astre*> astres) {
 // modifie sa vitesse selon accélérations, puis sa position en fonction des vitesses
 void Astre::Move() {
     AddVit(a_acc.x, a_acc.y); // ajout de l'accélération à la vitesse
-    U->borneVitesse(&a_vit);
+    U->borneVitesse(&a_vit); // on borne la vitesse
     AddPosition(a_vit.x, a_vit.y); // ajout de la vitesse à la position
 }
 
 
-// ajouter àa la position
+// ajouter à la position
 void Astre::AddPosition(float x, float y) {
     a_pos.x += x;
     a_pos.y += y;
