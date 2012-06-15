@@ -55,7 +55,9 @@ void Astre::calculsdt(std::vector<Astre*> astres) {
 		distY = astres[i]->GetPosition().y - a_pos.y;
 		dist2D = sqrt(carre(distX) + carre(distY));
 	    // on en déduit la force en newton, et donc la vitesse totale gagnée
-		force2D = U->attraction(a_masse, astres[i]->GetMasse(), dist2D);
+	    force2D = U->attraction(a_masse, 
+				    astres[i]->GetMasse(), 
+				    dist2D);
 	    // Le théorème de thalès nous permet d'annoncer la suite :
 		inter1 = ( distX*force2D/dist2D ) / a_masse;
 		inter2 = ( distY*force2D/dist2D ) / a_masse;
