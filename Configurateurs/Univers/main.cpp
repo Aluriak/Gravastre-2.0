@@ -5,6 +5,8 @@ using namespace std;
 
 
 int main(int argc, char *argv[]) {
+    // initialisation de l'aléatoire
+    srand(time(NULL));
     QApplication app(argc, argv);
 
     fenetre w;
