@@ -113,9 +113,6 @@ void RenduGraphique::boucleMaitresse() {
 	} else
         statMsq = 0;
     Event event; // évènement
-std::cout << app->GetWidth() << std::endl;
-std::cout << app->GetHeight() << std::endl;
-std::cout << app->GetFrameTime() << std::endl;
     // boucle évènementielle
     while(app->IsOpened()) {
 	// si on est pas en pause, on passe au dt suivant !
