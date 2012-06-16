@@ -91,7 +91,7 @@ void BoiteInfoAstre::Draw(Astre *astre) {
 	donnees[0].SetSize(donnees[0].GetSize()*3);
 	donnees[1].SetText("Masse : " + 
 		float2str(astre->GetMasse()/CONVERTION_KG));
-	inter = astre->GetPosition().x;
+	inter = astre->GetPosition().x/CONVERTION_DIST;
 	    donnees[2].SetText("PositionX : " + float2str(inter));
 	    calcul = inter - tabEvolValeurs[0];
 	    if(calcul < 0.0)
@@ -99,7 +99,7 @@ void BoiteInfoAstre::Draw(Astre *astre) {
 	    else if(calcul > 0.0)
 		tabVariation[0] = true;
 	    tabEvolValeurs[0] = inter;
-	inter = astre->GetPosition().y;
+	inter = astre->GetPosition().y/CONVERTION_DIST;
 	    donnees[3].SetText("PositionY : " + float2str(inter));
 	    calcul = inter - tabEvolValeurs[1];
 	    if(calcul < 0.0)
@@ -107,7 +107,7 @@ void BoiteInfoAstre::Draw(Astre *astre) {
 	    else if(calcul > 0.0)
 		tabVariation[1] = true;
 	    tabEvolValeurs[1] = inter;
-	inter = astre->GetVitesse().x;
+	inter = astre->GetVitesse().x/CONVERTION_VIT;
 	    donnees[4].SetText("VitesseX : " + float2str(inter));
 	    calcul = inter - tabEvolValeurs[2];
 	    if(calcul < 0.0)
@@ -115,7 +115,7 @@ void BoiteInfoAstre::Draw(Astre *astre) {
 	    else if(calcul > 0.0)
 		tabVariation[2] = true;
 	    tabEvolValeurs[2] = inter;
-	inter = astre->GetVitesse().y;
+	inter = astre->GetVitesse().y/CONVERTION_VIT;
 	    donnees[5].SetText("VitesseY : " + float2str(inter));
 	    calcul = inter - tabEvolValeurs[3];
 	    if(calcul < 0.0)
@@ -123,7 +123,7 @@ void BoiteInfoAstre::Draw(Astre *astre) {
 	    else if(calcul > 0.0)
 		tabVariation[3] = true;
 	    tabEvolValeurs[3] = inter;
-	inter = astre->GetAcceleration().x;
+	inter = astre->GetAcceleration().x/CONVERTION_VIT;
 	    donnees[6].SetText("AccelerationX : " + float2str(inter));
 	    calcul = inter - tabEvolValeurs[4];
 	    if(calcul < 0.0)
@@ -131,7 +131,7 @@ void BoiteInfoAstre::Draw(Astre *astre) {
 	    else if(calcul > 0.0)
 		tabVariation[4] = true;
 	    tabEvolValeurs[4] = inter;
-	inter = astre->GetAcceleration().y;
+	inter = astre->GetAcceleration().y/CONVERTION_VIT;
 	    donnees[7].SetText("AccelerationY : " + float2str(inter));
 	    calcul = inter - tabEvolValeurs[5];
 	    if(calcul < 0.0)
