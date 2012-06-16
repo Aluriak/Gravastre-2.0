@@ -18,19 +18,19 @@ RenduGraphique::RenduGraphique(bool aff, bool expl) {
 
     // création de l'univers
     U = new Univers(affichage, exemple, &police, SFML_TaillePolice);
-    if(affichage) 
+    if(affichage)
 	std::cout << "INI: \tUnivers initialisé\n";
     // création de l'écran
     app = new RenderWindow();
-    app->Create( 
+    app->Create(
 	    // Tailles et définition de l'écran
-	    VideoMode(SFML_TailleEcranX, SFML_TailleEcranY, SFML_Definition), 
+	    VideoMode(SFML_TailleEcranX, SFML_TailleEcranY, SFML_Definition),
 	    // nom du programme, flags de modes
-	    PRGM_NAME, Style::Close | Style::Resize, 
+	    PRGM_NAME, Style::Close | Style::Resize,
 	    // Profondeur(0), pochoir(0) et anticrénelage(selon utilisateur)
 	    WindowSettings(0,0,SFML_NiveauAntiCrenelage));
     if(!app) exit(EXIT_FAILURE);
-    if(affichage) 
+    if(affichage)
 	std::cout << "INI: \tRenderWindow initialisée\n";
     app->SetFramerateLimit(SFML_FPS);
     // Création de la vue
@@ -38,22 +38,22 @@ RenduGraphique::RenduGraphique(bool aff, bool expl) {
     Vector2f demiTaille(SFML_TailleEcranX/2, SFML_TailleEcranY/2);
     vue = new View(centre, demiTaille);
     app->SetView(*vue);
-    if(affichage) 
+    if(affichage)
 	std::cout << "INI: \tVue utilisateur créée\n";
     // Création de la boite d'information d'astre sélectionné
     float tmpx = SFML_TailleEcranX - SFML_TailleBoiteInfoX - 30;
     float tmpy = SFML_TailleEcranY - SFML_TailleBoiteInfoY - 30;
-    bia = new BoiteInfoAstre(app, SFML_ClrInterface, 
+    bia = new BoiteInfoAstre(app, SFML_ClrInterface,
 	    tmpx, tmpy,
-	    SFML_TailleBoiteInfoX, SFML_TailleBoiteInfoY, 
+	    SFML_TailleBoiteInfoX, SFML_TailleBoiteInfoY,
 	    &police, SFML_TaillePolBoiteInfo);
     // Création de la barre supérieure
     //*
-    bhi = new BoiteHauteInterface(app, &police, SFML_TPolHauteInterface, 
-				  SFML_ClrInterface, 
-				  0, 0,	// coordonnées du coin haut-gauche 
+    bhi = new BoiteHauteInterface(app, &police, SFML_TPolHauteInterface,
+				  SFML_ClrInterface,
+				  0, 0,	// coordonnées du coin haut-gauche
 				  app->GetWidth(), SFML_HauteurHauteInterface);
-    // Fini ! 
+    // Fini !
     if(affichage)
 	std::cout << "INI: RenduGraphique initialisé !" << std::endl;
 }
@@ -64,8 +64,8 @@ RenduGraphique::RenduGraphique(bool aff, bool expl) {
  */
 RenduGraphique::~RenduGraphique() {
     // destruction de l'interface
-	delete bia; // destruction de l'interface 
-	delete bhi; // destruction de l'interface 
+	delete bia; // destruction de l'interface
+	delete bhi; // destruction de l'interface
     // destruction des objets maîtres
 	delete vue; // destruction de la vue
 	delete U; // destruction de l'Univers
@@ -93,7 +93,7 @@ void RenduGraphique::boucleMaitresse() {
     // variables relatives à la sourie
 	bool sourisDroit = false, sourisGauche = false; // vrai si appuyé
 	bool boiteInfoBougee = false; // vrai quand la BoiteInfoAstre est ferrée
-	Vector2f posSourie(0,0); // coorodnnées de la sourie par rapport 
+	Vector2f posSourie(0,0); // coorodnnées de la sourie par rapport
 				 //     au dernier endroit cliqué droit
     // Zoom
 	double calcZoom; // utilisée pour calculer les zooms
@@ -123,7 +123,7 @@ void RenduGraphique::boucleMaitresse() {
 		// si on suit un astre, on indique bien ce mode !
 		etat[ETAT_GENERAL] = 'R';
 	    }
-	    else 
+	    else
 		etat[ETAT_GENERAL] = 'N';
 	}
 	// gestion évènementielle
@@ -145,7 +145,7 @@ void RenduGraphique::boucleMaitresse() {
 			// si rien n'est rentré
 			if(inter == 0)
 			    inter = NAV_PasTab;
-			for(int i = 0; i < inter; i++) 
+			for(int i = 0; i < inter; i++)
 			    U->passagedt();
 			if(affichage)
 			    std::cout<<inter<<" dt ont été sautés"<<std::endl;
@@ -160,13 +160,13 @@ void RenduGraphique::boucleMaitresse() {
 			    else if(zoomActuel > 1) {
 				zoomActuel /= NAV_CoefficientMolette;
 				vue->Zoom(1/NAV_CoefficientMolette);
-			    } 
-			} 
+			    }
+			}
 			// de plus, on recentre la fenêtre sur l'origine
 			vue->SetCenter(0,0);
 			break;
 		    case Key::Space: // suivre l'astre sélectionné
-			suivreAstre = false; 
+			suivreAstre = false;
 			// si un astre est sélectionné
 			if(selection != NULL)
 			    suivreAstre = true; // on suit l'astre sélect.
@@ -186,23 +186,23 @@ void RenduGraphique::boucleMaitresse() {
 		    // utilisation des lettres, pour différents effets
 		    case Key::M: // pour arrêter ou continuer la musique
 			if(statMsq) { // si tout vas bien pour la musique
-			    if(msq.GetStatus() != Sound::Playing) 
+			    if(msq.GetStatus() != Sound::Playing)
 				msq.Play(); // si en pause, on démarre
 			    else // sinon on met en pause
-				msq.Pause(); 
+				msq.Pause();
 			}
 			break;
 		    case Key::A: // modifier l'astre sélectionné
 			// si pas d'astre sélectionné, pas la peine de continuer
 			// Si Ctrl+a : on AJOUTE aux valeurs existantes
 			// Si a : on REMPLACE les valeurs existantes
-			if(input.IsKeyDown(Key::LControl) || // ctrl gauche 
+			if(input.IsKeyDown(Key::LControl) || // ctrl gauche
 				input.IsKeyDown(Key::LControl)) // ou droit
 			    interbool = true; // donc on ajoute
 			else // sinon
 			    interbool = false; // on remplace
-			if(selection != NULL) 
-			    modificationAstre(interbool); 
+			if(selection != NULL)
+			    modificationAstre(interbool);
 			if(affichage)
 			    std::cout<<"Astre en cours de modification..."<<std::endl;
 			break;
@@ -287,7 +287,7 @@ void RenduGraphique::boucleMaitresse() {
 			tampon = "";
 			app->SetFramerateLimit(SFML_FPS);
 			if(affichage)
-			    std::cout << "Nouvelle valeur de FPS : " 
+			    std::cout << "Nouvelle valeur de FPS : "
 					<< SFML_FPS << std::endl;
 			break;
 
@@ -313,7 +313,7 @@ void RenduGraphique::boucleMaitresse() {
 		    // si on n'a pas cliqué sur l'interface
 		    OBJET_INTERFACE oi = selectionInterface(event.MouseButton.X,event.MouseButton.Y); // on récupère la sortie
 		    if(oi == Dehors) {
-			// on sélectionne un astre 
+			// on sélectionne un astre
 			selectionAstre(event.MouseButton.X,event.MouseButton.Y);
 		    } else if(oi == BoiteInfo) {
 			// on a cliqué sur la BoiteInfoAstre
@@ -331,7 +331,7 @@ void RenduGraphique::boucleMaitresse() {
 		// si c'est le gauche
 		else if(event.MouseButton.Button == Mouse::Left) {
 		    sourisGauche = false;
-		    boiteInfoBougee = false; // la boite est déselectionnée, quoiqu'il arrive. 
+		    boiteInfoBougee = false; // la boite est déselectionnée, quoiqu'il arrive.
 		}
 	    }
 	    // mouvement de la molette
@@ -369,7 +369,7 @@ void RenduGraphique::boucleMaitresse() {
 		    posSourie.y = event.MouseMove.Y;
 		}
 		// si la souris bouge et que le bouton gauche est appuyé
-		else if(sourisGauche) { 
+		else if(sourisGauche) {
 		    // si on a ferré la BoiteInfoAstre
 		    if(boiteInfoBougee) {
 			// même technique que pour le clic droit, mais indépendant du zoom (l'interface n'est pas liée au zoom)
@@ -379,7 +379,7 @@ void RenduGraphique::boucleMaitresse() {
 			// on modifie les coordonnées de la sourie pour éviter d'additionner nombres toujours plus grands
 			posSourie.x = event.MouseMove.X;
 			posSourie.y = event.MouseMove.Y;
-			
+
 		    }
 		}
 	    } // fin de gestion des mouvements de la souris
@@ -419,7 +419,7 @@ void RenduGraphique::affichageSFML() {
     // On reviens à une vue normale pour ces dessins, car ils s'impriment par dessus le reste et sont indépendant de la vue utilisée
     app->SetView(app->GetDefaultView()); // on utilise la vue interface
     // affichage de la boite de dialogue en bas à droite, contenant les infos relatives à l'astre sélectionné
-    if(selection != NULL) 
+    if(selection != NULL)
 	bia->Draw(selection);
     bhi->Draw(tampon, directive, etat); // barre du haut affichée !
 }
@@ -455,7 +455,7 @@ bool RenduGraphique::confirmationQuitter(bool suivreAstre) {
 		}
 	    }
 	    // les boutons de la sourie sont pris en compte pour un non
-	    else if(event.Type == Event::MouseButtonPressed) 
+	    else if(event.Type == Event::MouseButtonPressed)
 		reponse = 0;
 	} // fin gestion évènement
     }
@@ -493,7 +493,7 @@ void RenduGraphique::selectionAstre(int x, int y) {
 	    if(distY < distOk) {
 		selection = (U->getAstres())[i]; // on sélectionne l'astre
 		// On fait savoir à l'astre qu'il est sélectionné
-		selection->SetSelection(true); 
+		selection->SetSelection(true);
 	    }
 	}
     }
@@ -521,13 +521,13 @@ void RenduGraphique::modificationAstre(bool ajout) {
     // gestion évènementielle
     // On procède à une attente de touche parmi :
     // 		-escape (annuler)
-    // 		-v (modifier la vitesse)	
+    // 		-v (modifier la vitesse)
     // 		    - x (vitesse en x)
     // 		    - y (vitesse en y)
-    // 		-a (modifier l'accélération)	
+    // 		-a (modifier l'accélération)
     // 		    - x (accélération en x)
     // 		    - y (accélération en y)
-    // 		-m (modifier la masse)	
+    // 		-m (modifier la masse)
     // 		- les chiffres, pour remplir le tampon
     // Pendant ce temps, l'Univers est en pause.
     // initialisation
@@ -550,11 +550,11 @@ void RenduGraphique::modificationAstre(bool ajout) {
 	    else if(event.Type == Event::KeyPressed) {
 		switch(event.Key.Code) {
 		    case Key::Escape:
-			tampon = ""; 
+			tampon = "";
 			termine = true; // stop !
 			break;
 		    // AJOUT/REMPLACEMENT ACCELERATION
-		    case Key::A: 
+		    case Key::A:
 			// AXE X
 			if(AxeX) {
 			    if(ajout)
@@ -587,7 +587,7 @@ void RenduGraphique::modificationAstre(bool ajout) {
 			termine = true; // stop !
 			break;
 		    // AJOUT/REMPLACEMENT VITESSE
-		    case Key::V: 
+		    case Key::V:
 			// AXE X
 			if(AxeX) {
 			    if(ajout)
@@ -627,9 +627,9 @@ void RenduGraphique::modificationAstre(bool ajout) {
 			    selection->AddMasse(str2float(tampon)
 							*CONVERTION_KG);
 			if(affichage)
-			    std::cout << "Nouvelle Masse : " 
+			    std::cout << "Nouvelle Masse : "
 				      << str2float(tampon) << std::endl;
-			tampon = ""; 
+			tampon = "";
 			termine = true; // stop !
 			break;
 		    case Key::X:
@@ -726,7 +726,7 @@ void RenduGraphique::modificationAstre(bool ajout) {
 			// et on les applique à l'astre
 			selection->SetPosition(tmp.x, tmp.y);
 			// on utilise la vue interface
-			app->SetView(app->GetDefaultView()); 
+			app->SetView(app->GetDefaultView());
 		    }
 		}
 
@@ -744,7 +744,7 @@ void RenduGraphique::modificationAstre(bool ajout) {
 		    // et on les applique à l'astre
 		    selection->SetPosition(tmp.x, tmp.y);
 		    // on utilise la vue interface
-		    app->SetView(app->GetDefaultView()); 
+		    app->SetView(app->GetDefaultView());
 		}
 	    }
 	} // fin gestion évènement secondaire
@@ -783,7 +783,7 @@ OBJET_INTERFACE RenduGraphique::selectionInterface(int x, int y) {
 	    return BoiteInfo;
 	}
     }
-    // arrivé ici, la seule chose possible est qu'aucun élément de l'interface 
+    // arrivé ici, la seule chose possible est qu'aucun élément de l'interface
     // 		n'ait été cliqué
     return Dehors;
 }
@@ -798,7 +798,7 @@ OBJET_INTERFACE RenduGraphique::selectionInterface(int x, int y) {
 // initialise les valeurs de renduGraphique et d'Univers
 void RenduGraphique::INI_Valeurs() {
     // on créé un lecteur de fichier d'initialisation
-    LecteurFichierINI lfi(FILE_INI, ':');
+    LecteurFichierINI lfi(FILE_INI, ';');
     // on initialise le vector accueillant les résultats
     std::vector<std::vector<std::string> > *val = lfi.getValeurs();
     // on lui fait lire le fichier FILE_INI avec ':' en séparateur
@@ -824,8 +824,8 @@ void RenduGraphique::INI_Valeurs() {
     SFML_TailleBoiteInfoY = str2num((*val)[0][3]);
     SFML_HauteurHauteInterface = str2num((*val)[0][4]);
     SFML_Definition = str2num((*val)[0][5]);
-    SFML_ClrInterface = Color(	str2num((*val)[0][6]), 
-				str2num((*val)[0][7]), 
+    SFML_ClrInterface = Color(	str2num((*val)[0][6]),
+				str2num((*val)[0][7]),
 				str2num((*val)[0][8]));
     SFML_NiveauAntiCrenelage = str2num((*val)[0][9]);
     SFML_FPS = str2num((*val)[0][10]);
@@ -866,7 +866,7 @@ void RenduGraphique::valeursParDefaut() {
     SFML_TailleBoiteInfoY = 250;
     SFML_HauteurHauteInterface = 20;
     SFML_Definition = 32;
-    SFML_ClrInterface = Color(80, 0, 255); 
+    SFML_ClrInterface = Color(80, 0, 255);
     SFML_NiveauAntiCrenelage = 4;
     SFML_FPS = 30;
     SFML_BordAstreSelection = 5;
