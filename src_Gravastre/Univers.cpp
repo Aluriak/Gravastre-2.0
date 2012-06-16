@@ -64,14 +64,14 @@ void Univers::supprimerAstre(Astre *cible) {
     //DEB:std::cout<<"Suppression engagée"<<std::endl;
     int ID = -1; // correspond à la case du vector où est référencé l'astre
     for(unsigned int i = 0; i < astres.size() && ID == -1; i++) {
-	if(astres[i] == cible)	
+	if(astres[i] == cible)
 	    ID = i;
     }
     if(ID == -1) { // erreur ! l'adresse envoyée est fausse !
-	FATAL_ERROR("UNV: La suppression d'un astre n'a pas aboutit suite à l'envois d'une adresse non valable", false); 
+	FATAL_ERROR("UNV: La suppression d'un astre n'a pas aboutit suite à l'envois d'une adresse non valable", false);
 	return; // on arrête là !
     }
-    
+
     // on recopie les addresses des astres encore valable dans un autre vector, on pop le vector astres puis on le rerempli.
     vector<Astre*> inter(0);
     // on parcours la liste du dernier à celui qui doit être supprimé (exclu)
@@ -166,7 +166,7 @@ void Univers::INI_Astres() {
     }
 
     // on créé un lecteur de fichier d'initialisation
-    LecteurFichierINI lfi(FILE_AST, ':');
+    LecteurFichierINI lfi(FILE_AST, ';');
     vector<vector<string> > *vec; // vecteur contenant les résultat
     if(lfi.lecture() <= 0) { // gestion d'erreur en tout genre
 	FATAL_ERROR("INI: Le fichier FILE_AST n'a pas été ouvert", false);
@@ -189,12 +189,12 @@ void Univers::INI_Astres() {
     // la première ligne du fichier contient des valeurs d'Univers
     G = str2float((*vec)[0][0]);
     bV = str2float((*vec)[0][1]);
-    
+
     // boucle d'initialisation (on commence à la deuxième ligne, car la première ligne est utilisée par le patron de ligne, décrivant l'ordre suivant :
     //		NOM:X:Y:MASSE:DIAMETRE:RED:GREEN:BLUE:VX:VY:
     for(unsigned int i = 1; i < vec->size(); i++) {
 	// on créé la couleur
-	sf::Color clr(str2num((*vec)[i][5]), str2num((*vec)[i][6]), str2num((*vec)[i][7])); 
+	sf::Color clr(str2num((*vec)[i][5]), str2num((*vec)[i][6]), str2num((*vec)[i][7]));
 	// on créé l'astre
 	astres.push_back(new Astre(this,
 		    sf::String((*vec)[i][0], *police, taillePolice),// arg nom
@@ -226,7 +226,7 @@ bool Univers::estCorrompu(vector<vector<string> > *vec) {
     }
     // pas de problème, pas de problème
     return false;
-    
+
 }
 
 
@@ -235,7 +235,7 @@ bool Univers::estCorrompu(vector<vector<string> > *vec) {
 void Univers::liberationMemoire() {
     // libération des astres
     // tant qu'il y a encore des cases
-    while(astres.size() > 0) {	
+    while(astres.size() > 0) {
 	delete astres.back(); // libération du dernier item
 	astres.pop_back(); // libération de la dernière cas
     }
