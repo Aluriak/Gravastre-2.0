@@ -37,8 +37,12 @@
     #define BIA_IMAGE_DECROIT "Fichiers/Ressources/varDecroit.bmp"
 // CONVERTION DE VALEURS 
 // (multiplier les valeurs réelles par ces valeurs pour avoir les valeurs de calcul du programme)
-    #define CONVERTION_KG 1e-17 // car tous les poids sont  divisé par 1e17 
-    #define CONVERTION_METRE 500000000 // car 300px = 150 000 000 000 m
+    // car tous les poids sont  divisé par 1e17 
+    #define CONVERTION_KG 1e-17 
+    // constante permettant de transformer une vitesse en km.s-1 en pixel.dt-1
+    #define CONVERTION_VIT 1/14.1
+    // constante permettant de transformer une ditance en ua en pixel
+    #define CONVERTION_DIST 300
 
 
 /*
