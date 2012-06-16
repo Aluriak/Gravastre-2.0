@@ -6,6 +6,8 @@ Codé par Lucas Bourneuf en C++, en utilisant la SFML.
 liens : http://www.sfml-dev.org/index.php
 
 La version téléchargée ici est destinée à windows. Certaines fonctionnalitées peuvent être manquantes, ou boguées.
+Bugs connus de la version windows :
+- La musique ne se lance pas, elle ne peut être lue.
 
 
 
