@@ -6,8 +6,9 @@ using namespace std;
 /*
  * CONSTRUCTEUR
  */
-Univers::Univers(bool aff, sf::Font *pol, int tPol) {
+Univers::Univers(bool aff, bool expl, sf::Font *pol, int tPol) {
     affichage = aff;
+    exemple = expl;
     police = pol;
     taillePolice = tPol;
     INI_Astres(); // initialisation de la liste d'Astres
@@ -157,6 +158,12 @@ void Univers::listeAstreParDefaut() {
 void Univers::INI_Astres() {
     // la première chose à faire, c'est de mettre la référence spatiale universelle, de classe ReferenceUnivers qui est un Astre par héritage. (et bénéficie du polymorphisme).
     astres.push_back(new ReferenceUnivers(this, police));
+
+    // si il est demandé de montrer l'univers par défaut, pas besoin de faire autre chose
+    if(exemple) {
+	listeAstreParDefaut();
+	return;
+    }
 
     // on créé un lecteur de fichier d'initialisation
     LecteurFichierINI lfi(FILE_AST, ':');

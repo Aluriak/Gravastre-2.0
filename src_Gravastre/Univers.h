@@ -5,7 +5,7 @@
 class Univers {
     public:
     // CONSTRUCTEUR ET DESTRUCTEUR
-	Univers(bool aff, sf::Font*, int);
+	Univers(bool aff, bool expl, sf::Font*, int);
 	~Univers();
 
     // METHODES
@@ -29,6 +29,7 @@ class Univers {
 	float G; // constante de gravitation universelle
 	int bV; // vitesse maximale
 	bool affichage; // si vrai, utilisation de la sortie standard
+	bool exemple; // vrai si utilisation de l'univers par défaut
 	// valeurs de texte
 	sf::Font *police;
 	int taillePolice;
