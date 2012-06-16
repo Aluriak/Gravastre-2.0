@@ -182,6 +182,7 @@ void fenetre::INI_GroupeUnivers() {
     // CONSTANTE G
 	a_LabConstG = new QLabel("Constante de gravitation universelle : ", 
 				this);
+	a_UnitConstG = new QLabel("N.m2.Kg-2", this); 
 	a_ConstGMantisse = new QDoubleSpinBox(this);
 	    a_ConstGMantisse->setRange(-10, 10);
 	    a_ConstGMantisse->setDecimals(5);
@@ -197,17 +198,20 @@ void fenetre::INI_GroupeUnivers() {
 	    layConstG->addWidget(a_ConstGMantisse);
 	    layConstG->addWidget(a_LabConstGExposant);
 	    layConstG->addWidget(a_ConstGExposant);
+	    layConstG->addWidget(a_UnitConstG);
     
     // VITESSE MAX
 	a_LabVitMax = new QLabel("Vitesse maximale universelle : ", 
 				this);
+	a_UnitVitMax = new QLabel("Km.s-1", this); 
 	a_VitMax = new QDoubleSpinBox(this);
-	    a_VitMax->setRange(0, 1e100);
-	    a_VitMax->setValue(10);
-	    a_VitMax->setToolTip("Vitesse maximale des astres avec le point d'origine comme référentiel. \nPlus cette limite est haute, plus les chances d'induire la simulation en erreur sont élevées. (méthode de calcul d'euler oblige) \nDans la réalité, cette valeur est celle de la lumière, 300 000 km.s-1 \nIci, la valeur 10 (pixel/dt) est garante d'un minimum de cohésion");
+	    a_VitMax->setRange(0, 3e5);
+	    a_VitMax->setValue(150);
+	    a_VitMax->setToolTip("Vitesse maximale des astres avec le point d'origine comme référentiel. \nPlus cette limite est haute, plus les chances d'induire la simulation en erreur sont élevées. (méthode de calcul d'euler oblige) \nDans la réalité, cette valeur est celle de la lumière, 300 000 km.s-1 \nIci, la valeur de 150 km.s-1 est garante d'un minimum de cohésion");
 	QHBoxLayout* layVitMax = new QHBoxLayout;
 	    layVitMax->addWidget(a_LabVitMax);
 	    layVitMax->addWidget(a_VitMax);
+	    layVitMax->addWidget(a_UnitVitMax);
 
     // LAYOUTS TERMINAUX
     QVBoxLayout* layUnivers = new QVBoxLayout;

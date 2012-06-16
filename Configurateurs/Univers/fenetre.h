@@ -36,8 +36,10 @@ class fenetre : public QWidget {
 	    QDoubleSpinBox* a_ConstGMantisse;
 	    QLabel* a_LabConstGExposant;
 	    QSpinBox* a_ConstGExposant;
+	    QLabel* a_UnitConstG;
 	    QLabel* a_LabVitMax;
 	    QDoubleSpinBox* a_VitMax;
+	    QLabel* a_UnitVitMax;
 
 	QGroupBox* groupAstre;
 	    QTableWidget* tableAstre;
