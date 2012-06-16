@@ -1,4 +1,4 @@
-#include "../main.h"
+#include "main.h"
 
 using namespace sf;
 
@@ -7,7 +7,7 @@ using namespace sf;
 /*
  * CONSTRUCTEUR
  */
-BoiteHauteInterface::BoiteHauteInterface(RenderWindow *rw, 
+BoiteHauteInterface::BoiteHauteInterface(RenderWindow *rw,
 					Font* pol, int tPol,
 					Color clr,
 					int x, int y,
@@ -34,25 +34,25 @@ BoiteHauteInterface::BoiteHauteInterface(RenderWindow *rw,
  * METHODES PUBLIQUES
  */
 // Dessine la barre dans app suivant les arguments envoyés
-void BoiteHauteInterface::Draw(	std::string tampon, 
+void BoiteHauteInterface::Draw(	std::string tampon,
 				std::string directive,
 				char*  etat) {
     // directive
     String direc(directive, *police, taillePolice);
-    direc.SetPosition(	AFF_Position.x + 4, 
+    direc.SetPosition(	AFF_Position.x + 4,
 			AFF_Position.y + 1*hauteur/4.0);
     // tampon
     String tamp(tampon.c_str(), *police, taillePolice);
-    tamp.SetPosition(	AFF_Position.x + 5*longueur/6.0, 
+    tamp.SetPosition(	AFF_Position.x + 5*longueur/6.0,
 			AFF_Position.y + 1*hauteur/4.0);
     // dessin
-    app->Draw(cadre); 
+    app->Draw(cadre);
     app->Draw(direc);
     app->Draw(tamp);
     // état (facultatif, donc complètement à la fin
     if(etat != NULL) {
 	String stat(etat, *police, taillePolice);
-	stat.SetPosition(	AFF_Position.x + 7*longueur/8.0, 
+	stat.SetPosition(	AFF_Position.x + 7*longueur/8.0,
 			    AFF_Position.y + 1*hauteur/4.0);
 	app->Draw(stat);
     }

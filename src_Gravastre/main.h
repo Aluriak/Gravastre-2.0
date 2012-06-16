@@ -11,7 +11,7 @@
     #include <sstream>
     #include <cmath>
     #include <vector>
-// SFML	
+// SFML
     #include <SFML/System.hpp>
     #include <SFML/Graphics.hpp>
     #include <SFML/Audio.hpp>
@@ -35,10 +35,10 @@
 // IMAGES
     #define BIA_IMAGE_CROIT "Fichiers/Ressources/varCroit.bmp"
     #define BIA_IMAGE_DECROIT "Fichiers/Ressources/varDecroit.bmp"
-// CONVERTION DE VALEURS 
+// CONVERTION DE VALEURS
 // (multiplier les valeurs réelles par ces valeurs pour avoir les valeurs de calcul du programme)
-    // car tous les poids sont  divisé par 1e17 
-    #define CONVERTION_KG 1e-17 
+    // car tous les poids sont  divisé par 1e17
+    #define CONVERTION_KG 1e-17
     // constante permettant de transformer une vitesse en km.s-1 en pixel.dt-1
     #define CONVERTION_VIT 1/14.1
     // constante permettant de transformer une ditance en ua en pixel
@@ -61,11 +61,11 @@
 /*
  * HEADERS
  */
-class Univers; 
-class Astre; 
+class Univers;
+class Astre;
 
-#include "Interface/BoiteInfoAstre.h"
-#include "Interface/BoiteHauteInterface.h"
+#include "BoiteInfoAstre.h"
+#include "BoiteHauteInterface.h"
 #include "LecteurFichierINI.h"
 #include "Astre.h"
 #include "ReferenceUnivers.h"

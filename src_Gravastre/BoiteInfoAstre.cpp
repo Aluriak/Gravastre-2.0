@@ -1,4 +1,4 @@
-#include "../main.h"
+#include "main.h"
 
 using namespace sf;
 
@@ -37,16 +37,16 @@ BoiteInfoAstre::BoiteInfoAstre( RenderWindow *rw, 	// fenetre
     // Création du Shape
     // On créé les quatre points
 	cadre.AddPoint(
-		AFF_Position.x, AFF_Position.y, 
+		AFF_Position.x, AFF_Position.y,
 		clrCadre, clrCadre);
 	cadre.AddPoint(
-		AFF_Position.x+larg, AFF_Position.y, 
+		AFF_Position.x+larg, AFF_Position.y,
 		clrCadre, clrCadre);
 	cadre.AddPoint(
-		AFF_Position.x+larg, AFF_Position.y+haut, 
+		AFF_Position.x+larg, AFF_Position.y+haut,
 		clrCadre, clrCadre);
 	cadre.AddPoint(
-		AFF_Position.x, AFF_Position.y+haut, 
+		AFF_Position.x, AFF_Position.y+haut,
 		clrCadre, clrCadre);
     // Quelques détails
 	cadre.EnableFill(false); // Il n'est pas plein !
@@ -58,7 +58,7 @@ BoiteInfoAstre::BoiteInfoAstre( RenderWindow *rw, 	// fenetre
 	}
 	// images
 	problemeImage = false; // a priori, pas de problème
-	if( !varCroit.LoadFromFile(BIA_IMAGE_CROIT) || 
+	if( !varCroit.LoadFromFile(BIA_IMAGE_CROIT) ||
 	    !varDecroit.LoadFromFile(BIA_IMAGE_DECROIT)) {
 	    FATAL_ERROR("BIA: Les images de variations n'ont pas été ouvertes", false);
 	    problemeImage = true; // on signal qu'il ya eu un problème
@@ -85,11 +85,11 @@ void BoiteInfoAstre::Draw(Astre *astre) {
 	app->Draw(cadre);
 
     // DONNEES
-    // on initialise les sf::String 
+    // on initialise les sf::String
     donnees[0] = astre->GetNom();
 	// le nom est mit en plus gros
 	donnees[0].SetSize(donnees[0].GetSize()*3);
-	donnees[1].SetText("Masse : " + 
+	donnees[1].SetText("Masse : " +
 		float2str(astre->GetMasse()/CONVERTION_KG));
 	inter = astre->GetPosition().x/CONVERTION_DIST;
 	    donnees[2].SetText("PositionX : " + float2str(inter));
@@ -139,8 +139,8 @@ void BoiteInfoAstre::Draw(Astre *astre) {
 	    else if(calcul > 0.0)
 		tabVariation[5] = true;
 	    tabEvolValeurs[5] = inter;
-    
-    // on place les différents éléments 
+
+    // on place les différents éléments
     float coordX = 0, coordY = 0;
     for(int i = 0; i < 8; i++) {
 	// coordonnées de base
@@ -161,7 +161,7 @@ void BoiteInfoAstre::Draw(Astre *astre) {
 		sprite.SetImage(varCroit);
 	    else // si décroissance
 		sprite.SetImage(varDecroit);
-	    sprite.SetPosition(	AFF_Position.x+10, 
+	    sprite.SetPosition(	AFF_Position.x+10,
 				    AFF_Position.y+30+i*2*taillePolice);
 	    app->Draw(sprite);
 	}
@@ -176,7 +176,7 @@ void BoiteInfoAstre::addPosition(float x, float y) {
     // on modifie les coordonées du cadre
     cadre.SetPointPosition(0, AFF_Position.x, AFF_Position.y);
     cadre.SetPointPosition(1, AFF_Position.x+SFML_LargeurBoite, AFF_Position.y);
-    cadre.SetPointPosition(2, 	AFF_Position.x+SFML_LargeurBoite, 
+    cadre.SetPointPosition(2, 	AFF_Position.x+SFML_LargeurBoite,
 				AFF_Position.y+SFML_HauteurBoite);
     cadre.SetPointPosition(3, AFF_Position.x, AFF_Position.y+SFML_HauteurBoite);
 }
