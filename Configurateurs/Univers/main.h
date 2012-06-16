@@ -10,6 +10,8 @@
 #include <fstream> // fichier
 #include <sstream> // flux
 #include <string> // chaîne
+#include <cstdlib> // librairie standard
+#include <ctime> // gestion du temps
 // Qt
 #include <QApplication> // Qt application
 #include <QObject> // objets
@@ -57,7 +59,7 @@ struct Couleur {
 // Général
     #define PRGM_NOM "Configurateur de l'Univers de Gravastre"
     #define FICHIER_CIBLE "./Fichiers/AST.Alk"
-    #define FICHIER_NOM_ASTRE "./NomsAstres"
+    #define FICHIER_NOM_ASTRE "./nomsAstres"
     #define CHEMIN_GRAVASTRE "./Gravastre"
     #define PRGM_LARGEUR 667
     #define PRGM_HAUTEUR 500
