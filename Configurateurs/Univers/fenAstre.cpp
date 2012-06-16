@@ -61,9 +61,28 @@ void fenAstre::envoiAstre() {
  * METHODES PRIVEES
  */
 // Retourne un nom au hasard, pioché dans le fichier FICHIER_NOM_ASTRE
-void fenAstre::nomAuHasard() {
+string fenAstre::nomAuHasard() {
     ifstream fic(FICHIER_NOM_ASTRE);
-	fic
+    if(!fic) {
+	ofstream err("Erreur.txt", ios::app);
+	err << "Le fichier FICHIER_NOM_ASTRE n'a pas été ouvert" << endl;
+	return "";
+    }
+    string ligne(""); // contient la ligne courante du fichier
+    int inter = 0; // contient les nombres aléatoires
+    // chaque ligne est mise dans le vector.
+    vector<string> noms(0);
+    while(getline(fic, ligne)) {
+	noms.push_back(ligne);
+    }
+    // on sait combien de lignes on a vue, on peut maintenant trouver un nombre aléatoire.
+    if(noms.size() == 0)
+	return "";
+    else {
+	// nb aléatoire entre 0 inclus et taille exclu
+	inter = rand() % noms.size(); 
+	return noms[inter];
+    }
 }
 
 
