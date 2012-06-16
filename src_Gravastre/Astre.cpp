@@ -9,14 +9,14 @@ using namespace sf;
  * CONSTRUCTEUR
  */
 // nom coordonnées du centre, masse, diamètre, couleur, vitesse, accélération.
-Astre::Astre(Univers *u, String Nom, float x, float y, float masse, float diam, Color clr, float vx, float vy, float ax, float ay, bool aff) {
+Astre::Astre(Univers *u, String Nom, float x, float y, float masse, float diam, Color clr, float vx, float vy, bool aff) {
     U = u;
     a_pos.x = x;
     a_pos.y = y;
     a_vit.x = vx;
     a_vit.y = vy;
-    a_acc.x = ax;
-    a_acc.y = ay;
+    a_acc.x = 0;
+    a_acc.y = 0;
     affichage = aff;
     a_masse = masse;
     a_diam = diam;

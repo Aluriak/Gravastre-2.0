@@ -13,7 +13,7 @@ class Astre {
 	Astre(  Univers*, sf::String, 
 		float, float, float, float, 
 		sf::Color, 
-		float = 0, float = 0, float = 0, float = 0, 
+		float = 0, float = 0,
 		bool = 1);
 
     // METHODES
