@@ -1,3 +1,5 @@
 Versions/*
 *.elf
-src_Gravastre/*.layout
+*.layout
+*~
+*.swap
