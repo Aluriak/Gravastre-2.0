@@ -45,42 +45,42 @@ void fenetre::ecritureFichier() {
     // PREMIERE LIGNE
 	// Taille de l'écran
 	    fic << ECRAN_TailleEcranX->value()
-	    <<":"<< ECRAN_TailleEcranY->value()
+	    <<";"<< ECRAN_TailleEcranY->value()
 	// Taille de le boite d'info astre (constante)
-	    <<":"<< 250
-	    <<":"<< 250
+	    <<";"<< 250
+	    <<";"<< 250
 	// Hauteur de la barre haute d'interface (constante)
-	    <<":"<< 20
+	    <<";"<< 20
 	// Définition
-	    <<":"<< definition
+	    <<";"<< definition
 	// Couleur de l'interface
-	    <<":"<< qCouleurInterface->red()
-	    <<":"<< qCouleurInterface->green()
-	    <<":"<< qCouleurInterface->blue()
+	    <<";"<< qCouleurInterface->red()
+	    <<";"<< qCouleurInterface->green()
+	    <<";"<< qCouleurInterface->blue()
 	// Anticrénelage
-	    <<":"<< ECRAN_Anticrenelage->value()
+	    <<";"<< ECRAN_Anticrenelage->value()
 	// FPS
-	    <<":"<< ECRAN_FPS->value()
+	    <<";"<< ECRAN_FPS->value()
 	// Tolérance de sélection
-	    <<":"<< AFF_BordSelection->value()
+	    <<";"<< AFF_BordSelection->value()
 	// Taille de la police pour les noms des astres
-	    <<":"<< AFF_TaillePolice->value()
+	    <<";"<< AFF_TaillePolice->value()
 	// Taille de la police pour la boite d'info astre (constante)
-	    <<":"<< 14
+	    <<";"<< 14
 	// Taille de la police ppr l'interface ahute (constante)
-	    <<":"<< 12
+	    <<";"<< 12
     // DEUXIEME LIGNE
-	<<":"<<endl<< qCheminPolice->toStdString()
+	<<";"<<endl<< qCheminPolice->toStdString()
     // TROISIEME LIGNE
-	<<":"<<endl<< VAL_PasFleche->value()
-	    <<":"<< VAL_PrecisionZoom->value()
-	    <<":"<< VAL_PasTabulation->value()
-	    <<":"<< VAL_PrecisionClic->value()
-	    <<":"<< inverserZoom
-	    <<":"<< inverserDefil
-	    <<":"<< activerMusique
+	<<";"<<endl<< VAL_PasFleche->value()
+	    <<";"<< VAL_PrecisionZoom->value()
+	    <<";"<< VAL_PasTabulation->value()
+	    <<";"<< VAL_PrecisionClic->value()
+	    <<";"<< inverserZoom
+	    <<";"<< inverserDefil
+	    <<";"<< activerMusique
     // QUATRIEME LIGNE
-	<<":"<<endl<< qCheminMusique->toStdString() << ":";
+	<<";"<<endl<< qCheminMusique->toStdString() << ";";
 
 
     // le fichier à été totalement écrit. On le ferme

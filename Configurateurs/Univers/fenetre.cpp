@@ -64,24 +64,24 @@ void fenetre::ecritureFichier() {
     }
     // première ligne :  G:vitesse max
     fic << a_ConstGMantisse->value()*pow(10, a_ConstGExposant->value()) 
-	<<":"<< a_VitMax->value() << ":" << endl;
+	<<";"<< a_VitMax->value() << ";" << endl;
     // lignes suivantes : les astres !
     Astre *astre = NULL; // pointeur vers l'astre considéré
     for(unsigned int i = 0; i < listeAstre.size(); i++) {
 	astre = listeAstre[i];
 	fic << astre->getNom()
-	    <<":"<<astre->getPosition().x
-	    <<":"<<astre->getPosition().y
-	    <<":"<<astre->getMasse()
-	    <<":"<<astre->getDiametre()
-	    <<":"<<astre->getCouleur().r
-	    <<":"<<astre->getCouleur().g
-	    <<":"<<astre->getCouleur().b
-	    <<":"<<astre->getVitesse().x
-	    <<":"<<astre->getVitesse().y
-	    <<":"<< 0
-	    <<":"<< 0
-	    <<":"<< endl;
+	    <<";"<<astre->getPosition().x
+	    <<";"<<astre->getPosition().y
+	    <<";"<<astre->getMasse()
+	    <<";"<<astre->getDiametre()
+	    <<";"<<astre->getCouleur().r
+	    <<";"<<astre->getCouleur().g
+	    <<";"<<astre->getCouleur().b
+	    <<";"<<astre->getVitesse().x
+	    <<";"<<astre->getVitesse().y
+	    <<";"<< 0
+	    <<";"<< 0
+	    <<";"<< endl;
     }
     fic.close();
 }
