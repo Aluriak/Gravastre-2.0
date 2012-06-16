@@ -7,4 +7,4 @@ all:
 	$(CC) $(FLAGS) -c *.cpp Interface/*.cpp
 	$(CC) -o $(NAME) *.o $(LIBS)
 	rm *.o
-	mv $(NAME) ../../
+	mv $(NAME) ../
