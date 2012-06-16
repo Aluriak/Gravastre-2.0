@@ -8,11 +8,13 @@ int main(int argc, char *argv[]) {
     // on rappelle que le premier argument est le dossier du lancement 
     bool fichierIni = true; // vrai si on initialise les fichiers au lancement
     bool affichage = false;
+    bool exemple = false; // vrai si on doit charger l'exemple, non le fichier
     // on parcours les arguments
     for(int i = 1; i < argc; i++) {
 	string str(argv[i]);
 	if(str == "-s")	affichage = true;
 	if(str == "-i")	fichierIni = true;
+	if(str == "-e") exemple = true;
     }
 
     // préparation des fichiers
@@ -23,7 +25,7 @@ int main(int argc, char *argv[]) {
 	cout << "\tBienvenue sur " << PRGM_NAME << endl << endl;
     if(affichage) 
 	cout << "INI: création d'un RenduGraphique..." << endl;
-    RenduGraphique GUI(affichage);
+    RenduGraphique GUI(affichage, exemple);
     GUI.boucleMaitresse();
     return EXIT_SUCCESS;
 }
