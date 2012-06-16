@@ -5,7 +5,7 @@
 class RenduGraphique {
     public:
     // CONSTRUCTEURS ET DESTRUCTEUR
-	RenduGraphique(bool aff=1);
+	RenduGraphique(bool aff=true, bool expl=false);
 	~RenduGraphique();
 
     // METHODES
@@ -49,6 +49,7 @@ class RenduGraphique {
 	bool NAV_ActiverMusique; // vrai si l'utilisateur peut écouter et interargir avec la musique
 	// valeurs de sortie
 	bool affichage; // si vrai, la sortie standard est utilisée
+	bool exemple; // vrai si utilisation de l'univers par défaut
 	std::string musique; // chemin vers le fichier musique
 	std::string tampon; // tampon d'entrée utilisateur
 	std::string directive; // directive à afficher dans la barre haute

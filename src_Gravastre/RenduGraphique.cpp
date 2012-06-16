@@ -6,8 +6,9 @@ using namespace sf;
 /*
  * CONSTRUCTEUR
  */
-RenduGraphique::RenduGraphique(bool aff) {
+RenduGraphique::RenduGraphique(bool aff, bool expl) {
     affichage = aff;
+    exemple = expl;
     selection = NULL; // pas d'astre sélectionné
     zoomActuel = 1; // le zoom de base est égal à 1
     etat[ETAT_GENERAL] = 'N';
@@ -16,7 +17,7 @@ RenduGraphique::RenduGraphique(bool aff) {
     INI_Valeurs(); // initialisation des valeurs utilisateurs
 
     // création de l'univers
-    U = new Univers(affichage, &police, SFML_TaillePolice);
+    U = new Univers(affichage, exemple, &police, SFML_TaillePolice);
     if(affichage) 
 	std::cout << "INI: \tUnivers initialisé\n";
     // création de l'écran
