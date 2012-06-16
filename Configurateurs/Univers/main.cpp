@@ -29,3 +29,18 @@ string num2str(float nb) {
 
 
 
+
+/*
+ * GESTION EXTERNE
+ */
+// diffuse l'erreur en argument et arrête le programme en FAILURE si arret vrai
+void FATAL_ERROR(string error, bool arret) {
+    ofstream err(FILE_ERR, ios::app);
+    err << error << "\n";
+    err.close();
+    if(arret)
+	exit(EXIT_FAILURE);
+}
+
+
+

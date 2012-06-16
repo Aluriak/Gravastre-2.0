@@ -27,6 +27,7 @@
  */
 // fonctions annexes
     std::string num2str(float);
+    void FATAL_ERROR(std::string error, bool arret); // diffuse l'erreur en argument et arrête le programme en FAILURE si arret vrai
 // énumération permettant de définir la façon dont est déterminée la position du satellite en fonction de l'astre
 enum MODE_PLACEMENT {Position, Vitesse};
 // Structures de simplification d'écriture
@@ -58,11 +59,13 @@ struct Couleur {
  */
 // Général
     #define PRGM_NOM "Configurateur de l'Univers de Gravastre"
-    #define FICHIER_CIBLE "./Fichiers/AST.Alk"
-    #define FICHIER_NOM_ASTRE "./Configurateurs/Univers/nomsAstres"
     #define CHEMIN_GRAVASTRE "./Gravastre"
     #define PRGM_LARGEUR 667
     #define PRGM_HAUTEUR 500
+// Fichiers
+    #define FICHIER_CIBLE "./Fichiers/AST.Alk"
+    #define FICHIER_NOM_ASTRE "./Configurateurs/Univers/nomsAstres"
+    #define FILE_ERR "Erreur.txt"
 // Valeurs
     #define TABLE_NB_COLONNE_ASTRE 6
 
