@@ -137,19 +137,19 @@ void Univers::listeAstreParDefaut() {
 	sf::String Lune("           et Lune", *police, taillePolice);
 	sf::String Mars("Mars", *police, taillePolice);
 	sf::String Chauffard("Chauffard", *police, taillePolice);
-	astres.push_back(new Astre(this, Soleil, 122,0,1e13,14,sf::Color(255,255,0), 0,0,0,0));
+	astres.push_back(new Astre(this, Soleil, 122,0,1e13,14,sf::Color(255,255,0), 0,0));
     // Mercure
-	astres.push_back(new Astre(this, Mercure, 122,120,1e07,4,sf::Color(255,125,0), 2.36,0,0,0));
+	astres.push_back(new Astre(this, Mercure, 122,120,1e07,4,sf::Color(255,125,0), 2.36,0));
     // Vénus
-	astres.push_back(new Astre(this, Venus, 122,-210,1e07,4,sf::Color(255,0,125), -1.78,0,0,0));
+	astres.push_back(new Astre(this, Venus, 122,-210,1e07,4,sf::Color(255,0,125), -1.78,0));
     // Terre
-	astres.push_back(new Astre(this, Terre, 422,0,1e07,4,sf::Color(0,0,255), 0,-1.49,0,0));
+	astres.push_back(new Astre(this, Terre, 422,0,1e07,4,sf::Color(0,0,255), 0,-1.49));
     // Lune
-	astres.push_back(new Astre(this, Lune, 422.6,0,7e05,2,sf::Color(255,255,255), 0,-1.52334,0,0));
+	astres.push_back(new Astre(this, Lune, 422.6,0,7e05,2,sf::Color(255,255,255), 0,-1.52334));
     // Mars
-	astres.push_back(new Astre(this, Mars, -328,0,1e07,4,sf::Color(255,0,0), 0,1.21,0,0));
+	astres.push_back(new Astre(this, Mars, -328,0,1e07,4,sf::Color(255,0,0), 0,1.21));
     // Chauffard
-	astres.push_back(new Astre(this, Chauffard, -878,120,1e05,2,sf::Color(0,255,0), 3,0,0,0));
+	astres.push_back(new Astre(this, Chauffard, -878,120,1e05,2,sf::Color(0,255,0), 3,0));
 }
 
 
@@ -198,15 +198,13 @@ void Univers::INI_Astres() {
 	// on créé l'astre
 	astres.push_back(new Astre(this,
 		    sf::String((*vec)[i][0], *police, taillePolice),// arg nom
-		    str2float((*vec)[i][1]),			// arg X
-		    str2float((*vec)[i][2]),			// arg Y
+		    str2float((*vec)[i][1])*CONVERTION_DIST,	// arg X
+		    str2float((*vec)[i][2])*CONVERTION_DIST,	// arg Y
 		    str2float((*vec)[i][3])*CONVERTION_KG,	// arg masse
 		    str2float((*vec)[i][4]),			// arg diametre
 		    clr,					// arg couleur
-		    str2float((*vec)[i][8]),			// arg VX
-		    str2float((*vec)[i][9]),			// arg VY
-		    str2float((*vec)[i][10]),			// arg AX
-		    str2float((*vec)[i][11]),			// arg AY
+		    str2float((*vec)[i][8])*CONVERTION_VIT,	// arg VX
+		    str2float((*vec)[i][9])*CONVERTION_VIT,	// arg VY
 		    affichage					// arg bool aff
 		    ));
     }
