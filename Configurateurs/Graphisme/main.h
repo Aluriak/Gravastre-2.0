@@ -31,7 +31,7 @@
  */
 // Général
     #define NOM_PRGM "Configurateur des graphismes de Gravastre"
-    #define FICHIER_CIBLE "./Fichiers/INI.Alk"
+    #define FICHIER_CIBLE "Fichiers/INI.Alk"
     #define GRAVASTRE_COULEUR_INTERFACE 80,0,255
     #define GRAVASTRE_CHEMIN_POLICE "Fichiers/Ressources/NEUROPOLX.ttf"
     #define GRAVASTRE_CHEMIN_MUSIQUE "Fichiers/Ressources/WelcomeToNova-Emitremmus.flac"

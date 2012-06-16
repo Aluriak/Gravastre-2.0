@@ -58,9 +58,9 @@ struct Couleur {
  */
 // Général
     #define PRGM_NOM "Configurateur de l'Univers de Gravastre"
-    #define FICHIER_CIBLE "./Fichiers/AST.Alk"
-    #define FICHIER_NOM_ASTRE "./Fichiers/nomsAstres"
-    #define CHEMIN_GRAVASTRE "./Gravastre"
+    #define FICHIER_CIBLE "Fichiers/AST.Alk"
+    #define FICHIER_NOM_ASTRE "Fichiers/nomsAstres"
+    #define CHEMIN_GRAVASTRE "Gravastre"
     #define PRGM_LARGEUR 667
     #define PRGM_HAUTEUR 500
 // Valeurs
