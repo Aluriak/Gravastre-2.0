@@ -18,6 +18,7 @@ RenduGraphique::RenduGraphique(bool aff, bool expl) {
 
     // création de l'univers
     U = new Univers(affichage, exemple, &police, SFML_TaillePolice);
+
     if(affichage)
 	std::cout << "INI: \tUnivers initialisé\n";
     // création de l'écran
@@ -82,7 +83,6 @@ RenduGraphique::~RenduGraphique() {
 void RenduGraphique::boucleMaitresse() {
     if(affichage)
 	std::cout << "INI: \tBoucle Maîtresse Lancée" <<std::endl<<std::endl;
-
     // intialisations
 	int inter = 0; // variable intermédiaire entière
 	std::string stmp(""); // variable intermédiaire de type string
@@ -100,17 +100,22 @@ void RenduGraphique::boucleMaitresse() {
     // Musique
 	int statMsq = 1; // mit à faux si la musique n'est pas utilisable
 	Music msq;
-	if(!msq.OpenFromFile(musique)) {
-	    FATAL_ERROR("INI: Le fichier de musique n'a pas été ouvert", false);
-	    statMsq = 0; // on ne doit pas agir sur la musique !
-	} else if(!NAV_ActiverMusique) { // si pas musique autorisée
-	    statMsq = 0;
-	} else {
-	    msq.Play();
-	    msq.SetLoop(true); // on joue la musique en boucle
-	}
+	// si on ne doit pas activer la musique
+	if(NAV_ActiverMusique) {
+	    // mais qu'il y a un prbm d'ouverture
+        if(!msq.OpenFromFile(musique)) {
+            FATAL_ERROR("INI: Le fichier de musique n'a pas été ouvert", false);
+            statMsq = 0; // on ne doit pas agir sur la musique !
+        } else {
+            msq.Play();
+            msq.SetLoop(true); // on joue la musique en boucle
+        }
+	} else
+        statMsq = 0;
     Event event; // évènement
-
+std::cout << app->GetWidth() << std::endl;
+std::cout << app->GetHeight() << std::endl;
+std::cout << app->GetFrameTime() << std::endl;
     // boucle évènementielle
     while(app->IsOpened()) {
 	// si on est pas en pause, on passe au dt suivant !
@@ -386,7 +391,6 @@ void RenduGraphique::boucleMaitresse() {
 
 
 	} // FIN GESTION EVENEMENT
-
 	// on vide l'écran (couleur noire)
 	app->Clear();
 	// et on affiche le shmilblick
