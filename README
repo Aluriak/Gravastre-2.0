@@ -1,70 +1,63 @@
 Gravastre 2.0
 
 Logiciel de simulation astronomique Open Source (voir le fichier LICENCE)
-CodÃ© par Lucas Bourneuf en C++, en utilisant la SFML.
+Codé par Lucas Bourneuf en C++, en utilisant la SFML.
 
 liens : http://www.sfml-dev.org/index.php
 
+La version téléchargée ici est destinée à windows. Certaines fonctionnalitées peuvent être manquantes, ou boguées.
 
 
 
 
 __Options de lancement :__
-Gravastre peut-Ãªtre lancÃ© avec des options dans la boite de commande.
-    -s : sortie standard utilisÃ©e. Des indocations sur ce que vous faites vous seront rÃ©guliÃ¨rement communiquÃ©es par la sortie standard
+Gravastre peut-être lancé avec des options dans la boite de commande.
+    -s : sortie standard utilisée. Des indications sur ce que vous faites vous seront régulièrement communiquées par la sortie standard
     -i : pas d'intialisation des fichiers de sortie, notamment le fichier d'erreur.
 
 
 
 __Touches disponibles :__ 
-    - M, pour arrÃªter/faire jouer la musique
-    - A, pour remplacer une propriÃ©tÃ© de l'astre sÃ©lectionnÃ© (ctrl + a pour ajouter Ã  la valeur)
-    - R, pour rÃ©initialiser l'Univers comme il l'Ã©tait au lancement
-    - FlÃ¨ches, pour se dÃ©placer
-    - PavÃ© NumÃ©rique et Chiffres clavier, pour pouvoir donner des nombres (affichÃ©s en haut). Utilisez la touche E pour les puissances et le tiret '-' pour le signe
+    - M, pour arréter/faire jouer la musique
+    - A, pour remplacer une propriété de l'astre sélectionné (ctrl + a pour ajouter à la valeur)
+    - R, pour réinitialiser l'Univers comme il l'était au lancement
+    - Flèches, pour se déplacer
+    - Pavé Numérique et Chiffres clavier, pour pouvoir donner des nombres (affichés en haut). Utilisez la touche E pour les puissances et le tiret '-' pour le signe
     - Pause, pour mettre en pause
-    - EntrÃ©e, pour revenir au zoom normal et recentrer la fenÃªtre sur l'origine
-    - Espace, pour prendre comme rÃ©fÃ©rentiel l'astre sÃ©lectionnÃ©
+    - Entrée, pour revenir au zoom normal et recentrer la fenétre sur l'origine
+    - Espace, pour prendre comme référentiel l'astre sélectionné
     - Escape, deux fois pour quitter pour quitter
     - Supr, pour supprimer l'astre en cours de modification
-    - +, pour ajouter le tampon au nombre d'image par seconde(FPS). Plus vous augmentez ce nombre compris entre 1 et 1000, plus l'ordinateur fait de calcul par secondes, et plus la simulation avance vite. Utilisez les nombres nÃ©gatifs pour diminuer le FPS.
+    - +, pour ajouter le tampon au nombre d'image par seconde(FPS). Plus vous augmentez ce nombre compris entre 1 et 1000, plus l'ordinateur fait de calcul par secondes, et plus la simulation avance vite. Utilisez les nombres négatifs pour diminuer le FPS.
 
 
 
 __Utilisation de la sourie :__
-    - Clic droit, utilisÃ© en cliquÃ©-glissÃ© permet de bouger le cadre
-    - Clic gauche, sur un astre, permet de le sÃ©lectionner. Sinon, l'astre est dÃ©selectionnÃ© (en modification, permet de dÃ©placer l'astre)
-    - Clic gauche, utilisÃ© en cliquÃ©-glissÃ© sur le cadre d'information de l'astre sÃ©lectionnÃ© permet de bouger ce dernier
+    - Clic droit, utilisé en cliqué-glissé permet de bouger le cadre
+    - Clic gauche, sur un astre, permet de le sélectionner. Sinon, l'astre est déselectionné (en modification, permet de déplacer l'astre)
+    - Clic gauche, utilisé en cliqué-glissé sur le cadre d'information de l'astre sélectionné permet de bouger ce dernier
     - Molette, pour le zoom
 
 
 
 __Modifier un astre :__ 
-Chose possible en sÃ©lectionnant l'astre voulut et en appuyant sur A. (ou ctrl+a pour garder l'ancienne valeur et l'ajouter Ã  la nouvelle)
-La simulation est mise en pause, et le tampon est vidÃ©.
-Remplissez ce dernier (avec le pavÃ© numÃ©rique), puis choisissez quel paramÃ¨tre utiliser en utilisant les touches associÃ©es
-Parmi les paramÃ¨tres, on trouve :
+Chose possible en sélectionnant l'astre voulut et en appuyant sur A. (ou ctrl+a pour garder l'ancienne valeur et l'ajouter à la nouvelle)
+La simulation est mise en pause, et le tampon est vidé.
+Remplissez ce dernier (avec le pavé numérique), puis choisissez quel paramêtre utiliser en utilisant les touches associées
+Parmi les paramêtres, on trouve :
     - la masse, avec la touche M
-    - la vitesse, avec la touche V (appuyer sur X ou Y juste avant permet de choisir l'axe sur lequel la vitesse sera appliquÃ©e/ajoutÃ©e)
-    - l'accÃ©lÃ©ration, avec la touche A (appuyer sur X ou Y juste avant permet de choisir l'axe sur lequel l'accÃ©lÃ©ration sera appliquÃ©e/ajoutÃ©e)
+    - la vitesse, avec la touche V (appuyer sur X ou Y juste avant permet de choisir l'axe sur lequel la vitesse sera appliquée/ajoutée)
+    - l'accélération, avec la touche A (appuyer sur X ou Y juste avant permet de choisir l'axe sur lequel l'accélération sera appliquée/ajoutée)
     - la touche Escape, pour annuler la modification
-Il est Ã©galement possible de modifier la position de l'astre, en cliquant-glissant Ã  l'endroit souhaitÃ©.
+Il est également possible de modifier la position de l'astre, en cliquant-glissant Ã  l'endroit souhaité.
 
 Exemple :
-taper successivement "1e13M" modifie la masse de l'astre en 1*10^13 unitÃ© de poids
+taper successivement "1e13M" modifie la masse de l'astre en 1*10^13 unité de poids
 
 
 
 
-__Indications sur les unitÃ©s utilisÃ©es__ :
-Le configurateur d'Univers enregistre les poids demandÃ©s par l'utilisateur. Cependant, Gravastre effectue ses calculs en considÃ©rant tous les poids multipliÃ©s par 1e-17, pour des raisons de conversions de distance. Ainsi, si vous demandez un Astre avec une masse Ã©quivalente Ã  celle de la Terre (5.94e24), Gravastre lira cette valeur et la convertira pour avoir 5.94e7. Il opÃ¨rera cette convertion Ã  l'envers pour que, lorsque vous sÃ©lectionnez un astre, ce soit le poids demandÃ© qui soit affichÃ©.
-300 px Ã©quivalent Ã  environ 1 unitÃ© astronomique. (1.5e11 mÃ¨tres)
+__Indications sur les unités utilisées__ :
+Le configurateur d'Univers enregistre les poids demandés par l'utilisateur. Cependant, Gravastre effectue ses calculs en considérant tous les poids multipliés par 1e-17, pour des raisons de conversions de distance. Ainsi, si vous demandez un Astre avec une masse équivalente à celle de la Terre (5.94e24), Gravastre lira cette valeur et la convertira pour avoir 5.94e7. Il opèrera cette convertion à l'envers pour que, lorsque vous sélectionnez un astre, ce soit le poids demandé qui soit affiché.
+300 px équivalent à environ 1 unité astronomique. (1.5e11 mètres)
 Multipliez les poids par 1e-17 pour obtenir les valeurs avec lesquelles travaille Gravastre.
-
-
-
-__Man Page__ :
-
-La page de manuel disponible dans man_page/ est visualisable via :
-
-groff -Tascii -mdoc man_page/gravastre.1 | less 
