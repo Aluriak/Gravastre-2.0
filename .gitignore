@@ -1,5 +1,6 @@
 Versions/*
 *.elf
 *.layout
+*.depend
 *~
 *.swap
