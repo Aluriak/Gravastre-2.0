@@ -38,11 +38,13 @@ class fenAstre : public QDialog {
 	    // diamètre
 		QLabel *a_LabDiametre;
 		QDoubleSpinBox* a_Diametre;
+		QLabel *a_UnitDiametre;
 	    // Masse
 		QLabel *a_LabMasse;
 		QLabel *a_LabMasseExposant;
 		QDoubleSpinBox* a_MasseMantisse;
 		QSpinBox* a_MasseExposant;
+		QLabel *a_UnitMasse;
 	    // Couleurs
 		QLabel *a_LabCouleur;
 		QPushButton* a_Couleur;
@@ -50,13 +52,17 @@ class fenAstre : public QDialog {
 	    // Positions
 		QLabel *a_LabPositionX;
 		QDoubleSpinBox* a_PositionX;
+		QLabel *a_UnitPositionX;
 		QLabel *a_LabPositionY;
 		QDoubleSpinBox* a_PositionY;
+		QLabel *a_UnitPositionY;
 	    // Vitesses
 		QLabel *a_LabVitesseX;
 		QDoubleSpinBox* a_VitesseX;
+		QLabel *a_UnitVitesseX;
 		QLabel *a_LabVitesseY;
 		QDoubleSpinBox* a_VitesseY;
+		QLabel *a_UnitVitesseY;
 		/*
 	    // Accélérations
 		QLabel *a_LabAccelerationX;

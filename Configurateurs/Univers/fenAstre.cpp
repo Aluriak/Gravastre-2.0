@@ -137,6 +137,7 @@ void fenAstre::INI_GroupeCreation() {
     // diamètre
 	a_LabDiametre = new QLabel("Diamètre de l'astre : ", this);
 	a_Diametre = new QDoubleSpinBox(this);
+	a_UnitDiametre = new QLabel("pixels", this);
 	    a_Diametre->setMinimum(0.000001);
 	    a_Diametre->setMaximum(50);
 	    if(modele != NULL) {
@@ -146,8 +147,10 @@ void fenAstre::INI_GroupeCreation() {
 	    QHBoxLayout* layDiametre = new QHBoxLayout;
 		layDiametre->addWidget(a_LabDiametre);
 		layDiametre->addWidget(a_Diametre);
+		layDiametre->addWidget(a_UnitDiametre);
     // Masse
 	a_LabMasse = new QLabel("Masse de l'astre : ", this);
+	a_UnitMasse = new QLabel("Kg", this);
 	a_LabMasseExposant = new QLabel("Puissance de dix :", this);
 	a_MasseMantisse = new QDoubleSpinBox(this);
 	    a_MasseMantisse->setRange(-10, 10);
@@ -168,6 +171,7 @@ void fenAstre::INI_GroupeCreation() {
 		layMasse->addWidget(a_MasseMantisse);
 		layMasse->addWidget(a_LabMasseExposant);
 		layMasse->addWidget(a_MasseExposant);
+		layMasse->addWidget(a_UnitMasse);
     // Couleurs
 	a_LabCouleur = new QLabel("Couleur de l'astre : ", this);
 	a_Couleur = new QPushButton("Choisir la couleur", this);
@@ -185,22 +189,28 @@ void fenAstre::INI_GroupeCreation() {
 	    }
     // Positions
 	a_LabPositionX = new QLabel("Position en abscisse : ", this);
+	a_UnitPositionX = new QLabel("UA", this);
+	    a_UnitPositionX->setToolTip("Unité Astronomique");
 	a_PositionX = new QDoubleSpinBox(this);
 	    a_PositionX->setMinimum(-9e127);
 	    a_PositionX->setMaximum(9e127);
 	    a_PositionX->setDecimals(5);
-	    a_PositionX->setToolTip("Position par rapport à l'origine en ordonnées.\nOn rappelle qu'un pixel en zoom normal équivaut à 500 000 km dans la réalité.\nDe la même façon, on déduit que 300 pixels sont égaux à 1 unité astronomique.");
+	    a_PositionX->setToolTip("Position par rapport à l'origine en abscisse, en UA");
 	a_LabPositionY = new QLabel("Position en ordonnée : ", this);
+	a_UnitPositionY = new QLabel("UA", this);
+	    a_UnitPositionY->setToolTip("Unité Astronomique");
 	a_PositionY = new QDoubleSpinBox(this);
 	    a_PositionY->setMinimum(-9e127);
 	    a_PositionY->setMaximum(9e127);
 	    a_PositionY->setDecimals(5);
-	    a_PositionY->setToolTip("Position par rapport à l'origine en abscisse.\nOn rappelle qu'un pixel en zoom normal équivaut à 500 000 km dans la réalité.\nDe la même façon, on déduit que 300 pixels sont égaux à 1 unité astronomique.");
+	    a_PositionY->setToolTip("Position par rapport à l'origine en ordonnée, en UA");
 	    QHBoxLayout* layPosition = new QHBoxLayout;
 		layPosition->addWidget(a_LabPositionX);
 		layPosition->addWidget(a_PositionX);
+		layPosition->addWidget(a_UnitPositionX);
 		layPosition->addWidget(a_LabPositionY);
 		layPosition->addWidget(a_PositionY);
+		layPosition->addWidget(a_UnitPositionY);
 	    if(modele != NULL) {
 		a_PositionX->setValue(modele->getPosition().x);
 		a_PositionY->setValue(modele->getPosition().y);
@@ -208,22 +218,28 @@ void fenAstre::INI_GroupeCreation() {
 
     // Vitesses
 	a_LabVitesseX = new QLabel("Vitesse en abscisse : ", this);
+	a_UnitVitesseX = new QLabel("km/s", this);
+	    a_UnitVitesseX->setToolTip("Kilomètres par seconde");
 	a_VitesseX = new QDoubleSpinBox(this);
 	    a_VitesseX->setMinimum(-9e127);
 	    a_VitesseX->setMaximum(9e127);
 	    a_VitesseX->setDecimals(5);
-	    a_VitesseX->setToolTip("Vitesse par rapport à l'origine sur l'axe des abscisses.\nOn rappelle que la vitesse correspond au nombre de pixel parcouru par instant t calculé.\nLa vitesse est donc équivalente au nombre de pas de 500 000 km réalisé par instant t.");
+	    a_VitesseX->setToolTip("Vitesse par rapport à l'origine sur l'axe des abscisses, en kilomètres par seconde.");
 	a_LabVitesseY = new QLabel("Vitesse en ordonnée : ", this);
+	a_UnitVitesseY = new QLabel("km/s", this);
+	    a_UnitVitesseY->setToolTip("Kilomètres par seconde");
 	a_VitesseY = new QDoubleSpinBox(this);
 	    a_VitesseY->setMinimum(-9e127);
 	    a_VitesseY->setMaximum(9e127);
 	    a_VitesseY->setDecimals(5);
-	    a_VitesseY->setToolTip("Vitesse par rapport à l'origine sur l'axe des ordonnées.\nOn rappelle que la vitesse correspond au nombre de pixel parcouru par instant t calculé.\nLa vitesse est donc équivalente au nombre de pas de 500 000 km réalisé par instant t.");
+	    a_VitesseY->setToolTip("Vitesse par rapport à l'origine sur l'axe des ordonnées, en kilomètres par seconde.");
 	    QHBoxLayout* layVitesse = new QHBoxLayout;
 		layVitesse->addWidget(a_LabVitesseX);
 		layVitesse->addWidget(a_VitesseX);
+		layVitesse->addWidget(a_UnitVitesseX);
 		layVitesse->addWidget(a_LabVitesseY);
 		layVitesse->addWidget(a_VitesseY);
+		layVitesse->addWidget(a_UnitVitesseY);
 	    if(modele != NULL) {
 		a_VitesseX->setValue(modele->getVitesse().x);
 		a_VitesseY->setValue(modele->getVitesse().y);
