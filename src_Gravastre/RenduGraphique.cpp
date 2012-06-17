@@ -100,15 +100,16 @@ void RenduGraphique::boucleMaitresse() {
     // Musique
 	int statMsq = 1; // mit à faux si la musique n'est pas utilisable
 	Music msq;
-	if(!msq.OpenFromFile(musique)) {
-	    FATAL_ERROR("INI: Le fichier de musique n'a pas été ouvert", false);
-	    statMsq = 0; // on ne doit pas agir sur la musique !
-	} else if(!NAV_ActiverMusique) { // si pas musique autorisée
+	if(NAV_ActiverMusique) { // si musique autorisée
+	    if(!msq.OpenFromFile(musique)) {
+		FATAL_ERROR("INI: Le fichier de musique n'a pas été ouvert", false);
+		statMsq = 0; // on ne doit pas agir sur la musique !
+	    } else {
+		msq.Play();
+		msq.SetLoop(true); // on joue la musique en boucle
+	    }
+	} else
 	    statMsq = 0;
-	} else {
-	    msq.Play();
-	    msq.SetLoop(true); // on joue la musique en boucle
-	}
     Event event; // évènement
 
     // boucle évènementielle
