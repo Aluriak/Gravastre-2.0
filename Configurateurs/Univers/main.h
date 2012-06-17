@@ -64,7 +64,7 @@ struct Couleur {
     #define PRGM_HAUTEUR 500
 // Fichiers
     #define FICHIER_CIBLE "./Fichiers/AST.Alk"
-    #define FICHIER_NOM_ASTRE "./Configurateurs/Univers/nomsAstres"
+    #define FICHIER_NOM_ASTRE "./Fichiers/nomsAstres"
     #define FILE_ERR "Erreur.txt"
 // Valeurs
     #define TABLE_NB_COLONNE_ASTRE 6
