@@ -5,7 +5,7 @@
 class Univers {
     public:
     // CONSTRUCTEUR ET DESTRUCTEUR
-	Univers(bool aff, bool expl, sf::Font*, int);
+	Univers(bool aff, bool expl, AFF_TRAJECTOIRE, sf::Font*, int);
 	~Univers();
 
     // METHODES
@@ -28,7 +28,9 @@ class Univers {
 	// valeurs utilisateurs
 	float G; // constante de gravitation universelle
 	int bV; // vitesse maximale
-	bool affichage; // si vrai, utilisation de la sortie standard
+	AFF_TRAJECTOIRE trajectoire; // affichage des trajectoires des astres
+	bool affTrajectoire; // vrai si on doit afficher une trajectoire au -
+	bool affIndication; // si vrai, utilisation de la sortie standard
 	bool exemple; // vrai si utilisation de l'univers par défaut
 	// valeurs de texte
 	sf::Font *police;

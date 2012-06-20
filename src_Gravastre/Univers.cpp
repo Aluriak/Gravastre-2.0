@@ -6,8 +6,14 @@ using namespace std;
 /*
  * CONSTRUCTEUR
  */
-Univers::Univers(bool aff, bool expl, sf::Font *pol, int tPol) {
-    affichage = aff;
+Univers::Univers(bool aff, bool expl, AFF_TRAJECTOIRE trjt, 
+		sf::Font *pol, int tPol) {
+    affIndication = aff;
+    trajectoire = trjt;
+    if(trajectoire == Toujours || trajectoire == Selection)
+	affTrajectoire = true;
+    else
+	affTrajectoire = false;
     exemple = expl;
     police = pol;
     taillePolice = tPol;
@@ -21,7 +27,7 @@ Univers::Univers(bool aff, bool expl, sf::Font *pol, int tPol) {
  */
 Univers::~Univers() {
     liberationMemoire();
-    if(affichage)
+    if(affIndication)
 	cout << "MEM: Libération mémoire Univers terminée" <<endl;
 }
 
@@ -85,7 +91,7 @@ void Univers::supprimerAstre(Astre *cible) {
     astres.pop_back();
     for(unsigned int i = 0; i < inter.size(); i++)
 	astres.push_back(inter[i]);
-    if(affichage)
+    if(affIndication)
 	std::cout<<"L'astre N°"<<ID<<" a été supprimé"<<std::endl;
 }
 
@@ -137,19 +143,19 @@ void Univers::listeAstreParDefaut() {
 	sf::String Lune("           et Lune", *police, taillePolice);
 	sf::String Mars("Mars", *police, taillePolice);
 	sf::String Chauffard("Chauffard", *police, taillePolice);
-	astres.push_back(new Astre(this, Soleil, 122,0,1e13,14,sf::Color(255,255,0), 0,0));
+	astres.push_back(new Astre(this, Soleil, 122,0,1e13,14,sf::Color(255,255,0), 0,0, affTrajectoire, affIndication));
     // Mercure
-	astres.push_back(new Astre(this, Mercure, 122,120,1e07,4,sf::Color(255,125,0), 2.36,0));
+	astres.push_back(new Astre(this, Mercure, 122,120,1e07,4,sf::Color(255,125,0), 2.36,0, affTrajectoire, affIndication));
     // Vénus
-	astres.push_back(new Astre(this, Venus, 122,-210,1e07,4,sf::Color(255,0,125), -1.78,0));
+	astres.push_back(new Astre(this, Venus, 122,-210,1e07,4,sf::Color(255,0,125), -1.78,0, affTrajectoire, affIndication));
     // Terre
-	astres.push_back(new Astre(this, Terre, 422,0,1e07,4,sf::Color(0,0,255), 0,-1.49));
+	astres.push_back(new Astre(this, Terre, 422,0,1e07,4,sf::Color(0,0,255), 0,-1.49, affTrajectoire, affIndication));
     // Lune
-	astres.push_back(new Astre(this, Lune, 422.6,0,7e05,2,sf::Color(255,255,255), 0,-1.52334));
+	astres.push_back(new Astre(this, Lune, 422.6,0,7e05,2,sf::Color(255,255,255), 0,-1.52334, affTrajectoire, affIndication));
     // Mars
-	astres.push_back(new Astre(this, Mars, -328,0,1e07,4,sf::Color(255,0,0), 0,1.21));
+	astres.push_back(new Astre(this, Mars, -328,0,1e07,4,sf::Color(255,0,0), 0,1.21, affTrajectoire, affIndication));
     // Chauffard
-	astres.push_back(new Astre(this, Chauffard, -878,120,1e05,2,sf::Color(0,255,0), 3,0));
+	astres.push_back(new Astre(this, Chauffard, -878,120,1e05,2,sf::Color(0,255,0), 3,0, affTrajectoire, affIndication));
 }
 
 
@@ -171,7 +177,7 @@ void Univers::INI_Astres() {
     if(lfi.lecture() <= 0) { // gestion d'erreur en tout genre
 	FATAL_ERROR("INI: Le fichier FILE_AST n'a pas été ouvert", false);
 	listeAstreParDefaut(); // la liste d'astre ne peut être constituée à partir du fichier, on utilise donc les valeurs par défaut
-	if(affichage)
+	if(affIndication)
 	    cout << "INI: \tListe des Astres par défaut chargée" <<endl;
 	return;
     } else {
@@ -180,7 +186,7 @@ void Univers::INI_Astres() {
 	if(estCorrompu(vec)) {
 	    FATAL_ERROR("INI: Le fichier FILE_AST est corrompu", false);
 	    listeAstreParDefaut(); // la liste d'astre ne peut être constituée à partir du fichier, on utilise donc les valeurs par défaut
-	    if(affichage)
+	    if(affIndication)
 		cout << "INI: \tListe des Astres par défaut chargée" <<endl;
 	    return;
 	}
@@ -205,11 +211,12 @@ void Univers::INI_Astres() {
 		    clr,					// arg couleur
 		    str2float((*vec)[i][8])*CONVERTION_VIT,	// arg VX
 		    str2float((*vec)[i][9])*CONVERTION_VIT,	// arg VY
-		    affichage					// arg bool aff
+		    affTrajectoire,				// arg bool trjt
+		    affIndication				// arg bool aff
 		    ));
     }
     // affichages
-    if(affichage)
+    if(affIndication)
 	cout << "INI: \tListe des Astres chargée" <<endl;
 }
 
