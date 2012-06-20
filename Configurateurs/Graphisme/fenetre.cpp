@@ -40,6 +40,11 @@ void fenetre::ecritureFichier() {
 	definition = 16;
     if(ECRAN_Definition->currentText() == DEFINITION_8)
 	definition = 8;
+    int affichageTrajectoire = 1;
+    if(AFF_Trajectoire->currentText() == "Tous les astres")
+	affichageTrajectoire = 2;
+    else if(AFF_Trajectoire->currentText() == "Aucune trajectoire")
+	affichageTrajectoire = 0;
 
     // on va écrire entièrement le fichier
     // PREMIERE LIGNE
@@ -76,6 +81,8 @@ void fenetre::ecritureFichier() {
 	    <<":"<< VAL_PrecisionZoom->value()
 	    <<":"<< VAL_PasTabulation->value()
 	    <<":"<< VAL_PrecisionClic->value()
+	    <<":"<< affichageTrajectoire
+	    <<":"<< AFF_BordTrajectoire->value()
 	    <<":"<< inverserZoom
 	    <<":"<< inverserDefil
 	    <<":"<< activerMusique
@@ -294,7 +301,24 @@ QVBoxLayout* fenetre::INI_GroupeGraphique() {
 	    QHBoxLayout* layBordSelection = new QHBoxLayout;
 		layBordSelection->addWidget(AFF_LabBordSelection);
 		layBordSelection->addWidget(AFF_BordSelection);
-	// 2: TAILLE POLICE ASTRE NOM
+	// 2: TRAJECTOIRES
+	// widget
+	    AFF_LabTrajectoire = new QLabel("Affichage des trajectoires", this);
+	    AFF_Trajectoire = new QComboBox(this);
+		AFF_Trajectoire->addItem("Tous les astres");
+		AFF_Trajectoire->addItem("Seulement la sélection");
+		AFF_Trajectoire->addItem("Aucune trajectoire");
+		AFF_Trajectoire->setToolTip("Choisissez quels astres verront leur trajectoire affichée. Les calculs menés pour les affichages de trajectoires sont lourds, évitez donc d'afficher toutes les trajectoire quand 20 astres se promènent dans votre Univers.");
+	    AFF_BordTrajectoire = new QDoubleSpinBox(this);
+		AFF_BordSelection->setRange(0.001,100);
+		AFF_BordSelection->setValue(0.3);
+		AFF_BordSelection->setToolTip("Taille des points représentant la trajectoire");
+	// Layouts
+	    QHBoxLayout* layTrajectoire = new QHBoxLayout;
+		layTrajectoire->addWidget(AFF_LabTrajectoire);
+		layTrajectoire->addWidget(AFF_Trajectoire);
+		layTrajectoire->addWidget(AFF_BordTrajectoire);
+	// 3: TAILLE POLICE ASTRE NOM
 	// widget
 	    AFF_LabTaillePolice = new QLabel("Taille de la police des astres", 
 					    this);
@@ -307,7 +331,7 @@ QVBoxLayout* fenetre::INI_GroupeGraphique() {
 	    QHBoxLayout* layTaillePolice = new QHBoxLayout;
 		layTaillePolice->addWidget(AFF_LabTaillePolice);
 		layTaillePolice->addWidget(AFF_TaillePolice);
-	// 3: POLICE UTILISEE
+	// 4: POLICE UTILISEE
 	// widget
 	    AFF_LabPolice = new QLabel(GRAVASTRE_CHEMIN_POLICE, this);
 	    AFF_Police = new QPushButton("Autre Police", this);
@@ -320,7 +344,7 @@ QVBoxLayout* fenetre::INI_GroupeGraphique() {
 	// connect
 	    connect(AFF_Police, SIGNAL(clicked()),
 		    this, SLOT(choisirCheminPolice()));
-	// 4: COULEUR INTERFACE
+	// 5: COULEUR INTERFACE
 	// widget
 	    AFF_LabCouleurInterface = new QLabel("Couleur de l'interface", 
 						    this);
@@ -338,6 +362,7 @@ QVBoxLayout* fenetre::INI_GroupeGraphique() {
 		    this, SLOT(choisirCouleurInterface()));
     // layout d'affichage
     layAffichage->addLayout(layBordSelection);
+    layAffichage->addLayout(layTrajectoire);
     layAffichage->addLayout(layTaillePolice);
     layAffichage->addLayout(layPolice);
     layAffichage->addLayout(layCouleurInterface);

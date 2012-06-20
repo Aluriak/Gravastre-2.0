@@ -45,6 +45,9 @@ class fenetre : public QWidget {
 	    QGroupBox* groupAffichage;
 		QLabel* AFF_LabBordSelection;
 		QSpinBox* AFF_BordSelection;
+		QLabel* AFF_LabTrajectoire;
+		QComboBox* AFF_Trajectoire;
+		QDoubleSpinBox* AFF_BordTrajectoire;
 		QLabel* AFF_LabTaillePolice;
 		QSpinBox* AFF_TaillePolice;
 		QLabel* AFF_LabPolice;
