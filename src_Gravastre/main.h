@@ -54,7 +54,11 @@
     // 	- boite d'information sur l'astre sélectionné
     // 	- barre d'interface du haut
     enum OBJET_INTERFACE {Dehors, BoiteInfo, Barre};
-
+    // Utilisé pour savoir comment afficher les trajectoires des astres
+    // 	- jamais (0)
+    // 	- seulement l'astre sélectionné (2)
+    // 	- toujours (2)
+    enum AFF_TRAJECTOIRE {Jamais=0, Selection=1, Toujours=2};
 
 
 
