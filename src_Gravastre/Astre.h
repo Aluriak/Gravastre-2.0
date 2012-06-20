@@ -14,7 +14,7 @@ class Astre {
 		float, float, float, float, 
 		sf::Color, 
 		float = 0, float = 0,
-		bool = 1);
+		bool = 0, bool = 1);
 
     // METHODES
 	virtual void calculsdt(std::vector<Astre*>); // calcule les accélérations en fonction des astres envoyés en arguments
@@ -27,14 +27,19 @@ class Astre {
 	// Généraux
 	    Univers *U;
 	    virtual sf::Shape GetShape();
+	    virtual std::deque<sf::Vector2f> GetTrajectoire();
 	    sf::String GetNom();
 	    void SetMasse(float);
 	    void AddMasse(float);
 	    float GetMasse();
 	    void SetDiametre(float);
 	    float GetDiametre();
+	    void SetCouleur(sf::Color);
+	    sf::Color GetCouleur();
 	    void SetSelection(bool);
 	    bool GetSelection();
+	    void SetAffTrajectoire(bool);
+	    bool GetAffTrajectoire();
 	// Position
 	    void SetPosition(float, float);
 	    sf::Vector2f GetPosition();
@@ -61,8 +66,11 @@ class Astre {
 	float a_diam;
 	sf::Color a_clr; // couleur majeure
 	sf::Color a_bclr; // couleur de bordure
+	std::deque<sf::Vector2f> trajectoire; // liste des points de trjt
+	unsigned int nbPointsTraj; // nombre de point max de trajectoire
 	// attribut extérieur
 	bool affichage; // si vrai, affichage en sortie standard
+	bool affTrajectoire; // si vrai, on stocke les coordonnées dans un deque dans l'optique de les afficher à l'écran.
 	bool estSelectionne; // vrai si cet Astre doit être mit en avant
 };
 

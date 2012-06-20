@@ -9,7 +9,7 @@ using namespace sf;
  * CONSTRUCTEUR
  */
 // nom coordonnées du centre, masse, diamètre, couleur, vitesse, accélération.
-Astre::Astre(Univers *u, String Nom, float x, float y, float masse, float diam, Color clr, float vx, float vy, bool aff) {
+Astre::Astre(Univers *u, String Nom, float x, float y, float masse, float diam, Color clr, float vx, float vy, bool trjt, bool aff) {
     U = u;
     a_pos.x = x;
     a_pos.y = y;
@@ -18,6 +18,8 @@ Astre::Astre(Univers *u, String Nom, float x, float y, float masse, float diam, 
     a_acc.x = 0;
     a_acc.y = 0;
     affichage = aff;
+    affTrajectoire = trjt;
+	nbPointsTraj = 200;
     a_masse = masse;
     a_diam = diam;
     a_clr = clr;
@@ -72,6 +74,13 @@ void Astre::calculsdt(std::vector<Astre*> astres) {
 
 // modifie sa vitesse selon accélérations, puis sa position en fonction des vitesses
 void Astre::Move() {
+    // on commence par s'occuper de la trajectoire : la position actuelle vas être insérée en fin de deque trjt, et la position en front vas être supprimée
+    if(affTrajectoire) {
+	trajectoire.push_back(Vector2f(a_pos));
+	if(trajectoire.size() >= nbPointsTraj)
+	    trajectoire.pop_front();
+    }
+    // On gère maintenant le déplacement en lui-même
     AddVit(a_acc.x, a_acc.y); // ajout de l'accélération à la vitesse
     U->borneVitesse(&a_vit); // on borne la vitesse
     AddPosition(a_vit.x, a_vit.y); // ajout de la vitesse à la position
@@ -110,6 +119,9 @@ Shape Astre::GetShape() {
     shape = Shape::Circle(a_pos.x, a_pos.y, a_diam/2.0, a_clr, epaisseurBord, a_bclr);
     return shape;
 }
+std::deque<Vector2f> Astre::GetTrajectoire() {
+    return trajectoire;
+}
 String Astre::GetNom() {
     nom.SetPosition(a_pos.x + a_diam + 5, a_pos.y);
     return nom;
@@ -131,12 +143,27 @@ float Astre::GetDiametre() {
     return a_diam;
 }
 
+void Astre::SetCouleur(Color c) {
+    a_clr = c;
+}
+Color Astre::GetCouleur() {
+    return a_clr;
+}
+
 void Astre::SetSelection(bool s) {
     estSelectionne = s;
 }
 bool Astre::GetSelection() {
     return estSelectionne;
 }
+
+void Astre::SetAffTrajectoire(bool t) {
+    affTrajectoire = t;
+}
+bool Astre::GetAffTrajectoire() {
+    return affTrajectoire;
+}
+
 
 
 
