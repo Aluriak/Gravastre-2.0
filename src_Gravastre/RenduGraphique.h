@@ -38,6 +38,8 @@ class RenduGraphique {
 	int SFML_TaillePolice; // taille de la police
 	int SFML_TaillePolBoiteInfo; // taille de la police pour BoiteInfoAstre
 	int SFML_TPolHauteInterface; // taille de la police pour la barre haute
+	AFF_TRAJECTOIRE SFML_Trajectoire; // affichage des trajectoire d'astres
+	float SFML_EpaisseurPointTrajectoire; // taille en px des point de trjt
 	sf::Font police; // police d'écriture
 	// valeurs de navigation
 	int NAV_PasFleche; // déplacement en px à l'appuis d'une flèche

@@ -17,7 +17,8 @@ RenduGraphique::RenduGraphique(bool aff, bool expl) {
     INI_Valeurs(); // initialisation des valeurs utilisateurs
 
     // création de l'univers
-    U = new Univers(affichage, exemple, &police, SFML_TaillePolice);
+    U = new Univers(affichage, exemple, SFML_Trajectoire, 
+		    &police, SFML_TaillePolice);
     if(affichage) 
 	std::cout << "INI: \tUnivers initialisé\n";
     // création de l'écran
@@ -415,6 +416,21 @@ void RenduGraphique::affichageSFML() {
     for(unsigned int i = 0; i < U->getAstres().size(); i++) {
 	app->Draw((U->getAstres())[i]->GetShape());
 	app->Draw((U->getAstres())[i]->GetNom());
+	// gestion de l'affichage des trajectoires
+	if(SFML_Trajectoire == Toujours || 
+	    (SFML_Trajectoire == Selection && selection == (U->getAstres())[i])){
+	    std::deque<Vector2f> inter = (U->getAstres())[i]->GetTrajectoire();
+	    //std::cout << inter.size() << std::endl;
+	    for(unsigned int y = 0; y < inter.size(); y++) {
+		Shape point;
+		point = Shape::Circle(inter[y].x, inter[y].y, SFML_EpaisseurPointTrajectoire, (U->getAstres())[i]->GetCouleur());
+		app->Draw(point);
+		/*
+		std::cout << "X:"<< point.GetPosition().x 
+			<< "   Y:"<< point.GetPosition().y
+			<< std::endl; // */
+	    }
+	}
     }
     // INTERFACE
     // On reviens à une vue normale pour ces dessins, car ils s'impriment par dessus le reste et sont indépendant de la vue utilisée
@@ -641,6 +657,11 @@ void RenduGraphique::modificationAstre(bool ajout) {
 			AxeX = false;
 			etat[ETAT_AXE] = 'Y'; // l'axe considéré est modifié
 			break;
+		    case Key::T:
+			// on inverse l'utilisation de la trajectoire
+			selection->SetAffTrajectoire(
+				!selection->GetAffTrajectoire());
+			break;
 		    case Key::Back: // on retire la dernière case du tampon
 			if(tampon.size() == 0) break;
 			stmp = tampon;
@@ -834,6 +855,8 @@ void RenduGraphique::INI_Valeurs() {
     SFML_TaillePolice = str2num((*val)[0][12]);
     SFML_TaillePolBoiteInfo = str2num((*val)[0][13]);
     SFML_TPolHauteInterface = str2num((*val)[0][14]);
+    SFML_Trajectoire = (AFF_TRAJECTOIRE)str2float((*val)[0][15]);
+    SFML_EpaisseurPointTrajectoire = str2float((*val)[0][16]);
     // on essaye d'ouvrir la police
     police = Font();
     // si la chaine est vide
@@ -874,6 +897,8 @@ void RenduGraphique::valeursParDefaut() {
     SFML_TaillePolice = 12;
     SFML_TaillePolBoiteInfo = 14;
     SFML_TPolHauteInterface = 12;
+    SFML_Trajectoire = Jamais;
+    SFML_EpaisseurPointTrajectoire = 0.3;
     // on n'arrête pas le programme, mais on dit que ça a merdé
     FATAL_ERROR("INI: le fichier de police n'a pas été ouvert", false);
     // on prend comme police la police de base
@@ -896,12 +921,12 @@ void RenduGraphique::valeursParDefaut() {
 // renvoi vrai si le vector n'a pas le nombre de cases attendu.
 bool RenduGraphique::estCorrompu(std::vector<std::vector<std::string> >* vec) {
     // le vector final doit avoir 4 cases
-    // 		0: 15 cases (valeurs entières SFML)
+    // 		0: 17 cases (valeurs entières SFML)
     // 		1: 1 case  (chemin vers la police)
     // 		2: 7 cases (valeurs de navigations)
     // 		3: 1 cases (valeurs de sortie)
     if(vec->size() != 4)	return true;
-    if((*vec)[0].size() != 15) 	return true;
+    if((*vec)[0].size() != 17) 	return true;
     if((*vec)[1].size() != 1) 	return true;
     if((*vec)[2].size() != 7) 	return true;
     if((*vec)[3].size() != 1) 	return true;
