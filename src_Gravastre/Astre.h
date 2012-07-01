@@ -22,6 +22,7 @@ class Astre {
 	void AddAcc(float, float); // ajouter à l'accélération
 	void AddPosition(float, float); // ajouter à la position
 	void AddVit(float, float); // ajouter à la vitesse
+	void AddPointsTrjt(unsigned int); // ajouter au nombre de points de trajectoire
 
     // ACCESSEURS
 	// Généraux
@@ -40,6 +41,8 @@ class Astre {
 	    bool GetSelection();
 	    void SetAffTrajectoire(bool);
 	    bool GetAffTrajectoire();
+	    void SetPointsTrjt(unsigned int);
+
 	// Position
 	    void SetPosition(float, float);
 	    sf::Vector2f GetPosition();
