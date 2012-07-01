@@ -662,6 +662,19 @@ void RenduGraphique::modificationAstre(bool ajout) {
 			selection->SetAffTrajectoire(
 				!selection->GetAffTrajectoire());
 			break;
+		    case Key::Add: // modification du nombre de points
+			// on active l'affichage de la trajectoire
+			selection->SetAffTrajectoire(true);
+			// puis on définit le nombre de points à afficher
+			if(ajout)
+			    selection->SetPointsTrjt(str2num(tampon));
+			else
+			    selection->AddPointsTrjt(str2num(tampon));
+			if(affichage)
+			    std::cout << "Nouveau nombre de points de trajectoire : " << str2num(tampon) << std::endl;
+			tampon = ""; 
+			termine = true; // stop !
+			break;
 		    case Key::Back: // on retire la dernière case du tampon
 			if(tampon.size() == 0) break;
 			stmp = tampon;
