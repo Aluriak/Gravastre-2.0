@@ -77,7 +77,8 @@ void Astre::Move() {
     // on commence par s'occuper de la trajectoire : la position actuelle vas être insérée en fin de deque trjt, et la position en front vas être supprimée
     if(affTrajectoire) {
 	trajectoire.push_back(Vector2f(a_pos));
-	if(trajectoire.size() >= nbPointsTraj)
+	// tant qu'il y a trop de points, on les efface
+	while(trajectoire.size() >= nbPointsTraj)
 	    trajectoire.pop_front();
     } else if(trajectoire.size() > 0) 
 	trajectoire.pop_front();
