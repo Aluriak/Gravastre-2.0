@@ -79,7 +79,8 @@ void Astre::Move() {
 	trajectoire.push_back(Vector2f(a_pos));
 	if(trajectoire.size() >= nbPointsTraj)
 	    trajectoire.pop_front();
-    }
+    } else if(trajectoire.size() > 0) 
+	trajectoire.pop_front();
     // On gère maintenant le déplacement en lui-même
     AddVit(a_acc.x, a_acc.y); // ajout de l'accélération à la vitesse
     U->borneVitesse(&a_vit); // on borne la vitesse
@@ -103,6 +104,11 @@ void Astre::AddVit(float x, float y) {
 void Astre::AddAcc(float x, float y) {
     gainAcc.x += x;
     gainAcc.y += y;
+}
+
+// ajouter au nombre de points de la trajectoire
+void Astre::AddPointsTrjt(unsigned int i) {
+    nbPointsTraj += i;
 }
 
 
@@ -164,6 +170,9 @@ bool Astre::GetAffTrajectoire() {
     return affTrajectoire;
 }
 
+void Astre::SetPointsTrjt(unsigned int i) {
+    nbPointsTraj = i;
+}
 
 
 
