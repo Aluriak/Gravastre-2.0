@@ -74,6 +74,9 @@ void fenetre::ecritureFichier() {
 	    <<":"<< 14
 	// Taille de la police ppr l'interface ahute (constante)
 	    <<":"<< 12
+	// Trajectoires
+	    <<":"<< affichageTrajectoire
+	    <<":"<< AFF_BordTrajectoire->value()
     // DEUXIEME LIGNE
 	<<":"<<endl<< qCheminPolice->toStdString()
     // TROISIEME LIGNE
@@ -81,8 +84,6 @@ void fenetre::ecritureFichier() {
 	    <<":"<< VAL_PrecisionZoom->value()
 	    <<":"<< VAL_PasTabulation->value()
 	    <<":"<< VAL_PrecisionClic->value()
-	    <<":"<< affichageTrajectoire
-	    <<":"<< AFF_BordTrajectoire->value()
 	    <<":"<< inverserZoom
 	    <<":"<< inverserDefil
 	    <<":"<< activerMusique
@@ -310,9 +311,9 @@ QVBoxLayout* fenetre::INI_GroupeGraphique() {
 		AFF_Trajectoire->addItem("Aucune trajectoire");
 		AFF_Trajectoire->setToolTip("Choisissez quels astres verront leur trajectoire affichée. Les calculs menés pour les affichages de trajectoires sont lourds, évitez donc d'afficher toutes les trajectoire quand 20 astres se promènent dans votre Univers.");
 	    AFF_BordTrajectoire = new QDoubleSpinBox(this);
-		AFF_BordSelection->setRange(0.001,100);
-		AFF_BordSelection->setValue(0.3);
-		AFF_BordSelection->setToolTip("Taille des points représentant la trajectoire");
+		AFF_BordTrajectoire->setRange(0.001,100);
+		AFF_BordTrajectoire->setValue(0.3);
+		AFF_BordTrajectoire->setToolTip("Taille des points représentant la trajectoire");
 	// Layouts
 	    QHBoxLayout* layTrajectoire = new QHBoxLayout;
 		layTrajectoire->addWidget(AFF_LabTrajectoire);
